@@ -330,11 +330,11 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center print:gap-4">
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">400K+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">412.124+</div>
                 <div className="text-gray-600 print:text-sm">Active Collectors</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">20M+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">21.212.121+</div>
                 <div className="text-gray-600 print:text-sm">Catalog Items</div>
               </div>
               <div>
@@ -342,12 +342,12 @@ export default function Home() {
                 <div className="text-gray-600 print:text-sm">Countries</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">50+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">53+</div>
                 <div className="text-gray-600 print:text-sm">Languages</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">40+</div>
-                <div className="text-gray-600 print:text-sm">Collection Categories</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">47+</div>
+                <div className="text-gray-600 print:text-sm">Categories</div>
               </div>
             </div>
           </div>
