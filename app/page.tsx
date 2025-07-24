@@ -986,7 +986,7 @@ export default function Home() {
               <div className="text-blue-200 text-xs mb-0.5">
                 ✓ No credit card required ✓ Instant access ✓ Join 400,000+ collectors
               </div>
-              <div className="text-blue-100 text-base font-medium">Happy Colnecting 🥳</div>
+              <div className="text-blue-100 text-base font-semibold">Happy Colnecting 🥳</div>
             </div>
 
             {/* Footer content integrated into CTA section */}
