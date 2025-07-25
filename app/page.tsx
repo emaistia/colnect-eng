@@ -270,7 +270,7 @@ export default function Home() {
                     <span className="text-blue-600 print:text-gray-800"> Connect Faster</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-600 leading-relaxed print:text-lg">
-                    Manage your collection and find ideal swap partners, all from one place. Colnect offers a comprehensive catalog, automatic matching, and image search for collectors of stamps, coins, banknotes, and more.
+                    Manage your collection and find ideal swap partners, all from one place. Colnect offers a comprehensive catalog, automatic matching, and picture search for collectors of stamps, coins, banknotes, and more.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 print:hidden">
@@ -330,11 +330,11 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center print:gap-4">
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">412.124+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">400K+</div>
                 <div className="text-gray-600 print:text-sm">Active Collectors</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">21.212.121+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">20M+</div>
                 <div className="text-gray-600 print:text-sm">Catalog Items</div>
               </div>
               <div>
@@ -342,12 +342,12 @@ export default function Home() {
                 <div className="text-gray-600 print:text-sm">Countries</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">53+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">50+</div>
                 <div className="text-gray-600 print:text-sm">Languages</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">47+</div>
-                <div className="text-gray-600 print:text-sm">Categories</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">40+</div>
+                <div className="text-gray-600 print:text-sm">Collection Categories</div>
               </div>
             </div>
           </div>
@@ -448,7 +448,8 @@ export default function Home() {
                     Collection on the Go
                   </h3>
                   <p className="text-gray-600 print:text-sm">
-                    With our dedicated mobile apps, your entire collection inventory is always in your pocket. Available for iOS &amp; Android. 
+                    With our dedicated mobile apps, your entire collection inventory is always in your pocket. Available
+                    for iOS & Android with full synchronization.
                   </p>
                 </CardContent>
               </Card>
@@ -482,7 +483,9 @@ export default function Home() {
                 How Do You Want to Start?
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-6 print:text-base">
-                Whether you're here to build your collection, make trades, or just explore, we’ve got the features to help you do it. You can collect, sell, or simply browse, start with what feels right today.
+                Whether you're here to build your collection, make trades, or just explore, we've got the tools for you.
+                Choose what feels right. You can do all three: collect, sell, or just explore. But let's start with what
+                suits you best today.
               </p>
             </div>
 
@@ -633,11 +636,11 @@ export default function Home() {
                       <ul className="space-y-2 text-sm text-gray-600 print:text-xs">
                         <li className="flex items-start gap-2">
                           <Book className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0 print:text-gray-800" />
-                          <span>Browse our comprehensive catalog with 40+ collectible categories. </span>
+                          <span>Browse 40+ collectible categories with images & variants</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <Star className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0 print:text-gray-800" />
-                          <span>Discover what makes each collectible unique</span>
+                          <span>View collector ratings & historical info</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0 print:text-gray-800" />
@@ -920,30 +923,31 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA Section with Integrated Bonuses - Compressed */}
-        <section className="w-full py-6 md:py-8 bg-blue-600 text-white print:hidden">
+        {/* Final CTA Section with Integrated Bonuses - Reduced Size */}
+        <section className="w-full py-8 md:py-12 bg-blue-600 text-white print:hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-4">
-              <h2 className="text-xl md:text-2xl font-bold mb-2">Ready to Collect Smarter and Connect Faster?</h2>
-              <p className="text-base text-blue-100 mb-3 max-w-2xl mx-auto">
-                Start your collecting journey today. It's completely free, and packed with tools to grow your collection with confidence.
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Collect Smarter and Connect Faster?</h2>
+              <p className="text-lg text-blue-100 mb-4 max-w-2xl mx-auto">
+                Start your collecting journey today — it's completely free, and packed with tools to grow your
+                collection with confidence.
               </p>
             </div>
 
             {/* Integrated Bonus Section */}
-            <div className="max-w-3xl mx-auto mb-3">
-              <div className="text-center mb-1">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Bonus for New Members:</h3>
+            <div className="max-w-3xl mx-auto mb-4">
+              <div className="text-center mb-2">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Bonus for New Members:</h3>
               </div>
 
-              <div className="space-y-1.5 mb-3">
+              <div className="space-y-2 mb-4">
                 {/* Quick-start Guide Bonus */}
-                <div className="flex items-start gap-2 p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <div className="flex items-start gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                   <div className="flex-shrink-0">
-                    <div className="text-lg">📘</div>
+                    <div className="text-xl">📘</div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-bold text-white mb-0.5">
+                    <h4 className="text-sm font-bold text-white mb-1">
                       Quick-start Guide: "5 Mistakes New Collectors Make"
                     </h4>
                     <p className="text-xs text-blue-100">
@@ -953,12 +957,12 @@ export default function Home() {
                 </div>
 
                 {/* Pro Tips Email Series */}
-                <div className="flex items-start gap-2 p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <div className="flex items-start gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                   <div className="flex-shrink-0">
-                    <div className="text-lg">📬</div>
+                    <div className="text-xl">📬</div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-bold text-white mb-0.5">Pro Tips Email Series</h4>
+                    <h4 className="text-sm font-bold text-white mb-1">Pro Tips Email Series</h4>
                     <p className="text-xs text-blue-100">
                       Exclusive insights from seasoned collectors delivered to your inbox.
                     </p>
@@ -968,40 +972,40 @@ export default function Home() {
             </div>
 
             {/* CTA Button - Made Bigger */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-4">
               <a
                 href={`${ctaUrl}&utm_content=final_cta_with_bonuses&ref=ebook_lp`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-xl px-12 py-6">
                   👉 Start Free – Get Your Bonus Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               </a>
             </div>
 
             {/* Benefits and Happy Colnecting */}
             <div className="text-center">
-              <div className="text-blue-200 text-xs mb-0.5">
+              <div className="text-blue-200 text-sm mb-1">
                 ✓ No credit card required ✓ Instant access ✓ Join 400,000+ collectors
               </div>
-              <div className="text-blue-100 text-base font-semibold">Happy Colnecting 🥳</div>
+              <div className="text-blue-100 text-lg font-medium">Happy Colnecting 🥳</div>
             </div>
 
             {/* Footer content integrated into CTA section */}
-            <div className="text-center mt-4 pt-2 border-t border-blue-700 print:hidden">
-              <div className="flex items-center justify-center gap-2 mb-1">
+            <div className="text-center mt-6 pt-4 border-t border-blue-700 print:hidden">
+              <div className="flex items-center justify-center gap-2 mb-2">
                 <Image
                   src="/images/colnect-logo.png"
                   alt="Colnect Logo"
-                  width={60} // Further reduced logo size
-                  height={18}
+                  width={70} // Smaller logo size
+                  height={21}
                   className="h-auto brightness-0 invert"
                 />
               </div>
-              <p className="text-blue-100 text-xs mb-1 max-w-md mx-auto ml-auto leading-5 tracking-tight">
-                COLLECT SMARTER, CONNECT FASTER         
+              <p className="text-blue-100 text-sm mb-2 max-w-md mx-auto">
+                Comprehensive catalog, automatic matching, and picture search for collectors worldwide.
               </p>
               <p className="text-blue-200 text-xs">
                 © {new Date().getFullYear()} Colnect Ltd. All rights reserved. Made with ❤️ for collectors worldwide.
@@ -1026,7 +1030,7 @@ export default function Home() {
           onClick={() => window.open("https://colnect.com/en/help", "_blank")}
           aria-label="AI Assistant Help"
         >
-          
+          <MessageCircle className="h-6 w-6" />
         </Button>
       </div>
     </div>
