@@ -1,0 +1,280 @@
+{
+  "project": {
+    "name": "Colnect Landing Page",
+    "description": "World's largest collectors community website redesign",
+    "version": "2.0.0",
+    "lastUpdated": "2025-01-23"
+  },
+  "theme": {
+    "colorPalette": {
+      "primary": {
+        "darkBlue": "#1e3a8a",
+        "lightBlue": "#3b82f6",
+        "blue50": "#eff6ff",
+        "blue100": "#dbeafe",
+        "blue600": "#2563eb",
+        "blue700": "#1d4ed8"
+      },
+      "neutral": {
+        "white": "#ffffff",
+        "gray50": "#f9fafb",
+        "gray100": "#f3f4f6",
+        "gray600": "#4b5563",
+        "gray900": "#111827"
+      },
+      "accent": {
+        "green500": "#10b981",
+        "yellow500": "#f59e0b",
+        "red500": "#ef4444"
+      }
+    },
+    "typography": {
+      "fontFamily": "Inter",
+      "headings": {
+        "h1": "text-4xl md:text-6xl font-bold",
+        "h2": "text-3xl md:text-4xl font-bold",
+        "h3": "text-xl md:text-2xl font-bold"
+      },
+      "body": {
+        "large": "text-xl md:text-2xl",
+        "regular": "text-base",
+        "small": "text-sm"
+      }
+    },
+    "spacing": {
+      "sections": "py-16 md:py-24",
+      "containers": "container mx-auto px-4",
+      "cards": "p-6 md:p-8"
+    }
+  },
+  "components": {
+    "header": {
+      "type": "sticky",
+      "elements": ["logo", "navigation", "cta-button"],
+      "navigation": [
+        { "label": "Features", "href": "#features" },
+        { "label": "How It Works", "href": "#how-it-works" },
+        { "label": "Testimonials", "href": "#testimonials" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Contact", "href": "#contact" }
+      ]
+    },
+    "hero": {
+      "layout": "two-column",
+      "elements": [
+        "trust-badge",
+        "main-headline",
+        "sub-headline",
+        "primary-cta",
+        "secondary-cta",
+        "trust-indicators",
+        "hero-image"
+      ],
+      "headline": "The World's Largest Collectors Community",
+      "subHeadline": "Manage your collection, discover rare items, and trade with collectors from 250+ countries.",
+      "ctaText": "Create Your Free Account"
+    },
+    "trustIndicators": {
+      "stats": [
+        { "number": "400K+", "label": "Active Collectors" },
+        { "number": "2M+", "label": "Catalog Items" },
+        { "number": "250+", "label": "Countries" },
+        { "number": "20+", "label": "Years Online" }
+      ]
+    },
+    "features": {
+      "title": "Why Collectors Choose Colnect",
+      "layout": "4-column-grid",
+      "items": [
+        {
+          "icon": "puzzle",
+          "title": "Smart Auto-Matching",
+          "description": "AI-powered algorithm instantly finds collectors who have what you want"
+        },
+        {
+          "icon": "book",
+          "title": "Comprehensive Catalogs",
+          "description": "Access detailed catalogs with 2M+ items, expert descriptions, and high-quality images"
+        },
+        {
+          "icon": "globe",
+          "title": "Global Community",
+          "description": "Connect with trusted collectors from 250+ countries in our secure environment"
+        },
+        {
+          "icon": "shield",
+          "title": "Secure Trading",
+          "description": "Trade with confidence using our rating system and dispute resolution"
+        }
+      ]
+    },
+    "userJourney": {
+      "title": "How Will You Use Colnect?",
+      "interactive": true,
+      "modalPopouts": true,
+      "userTypes": [
+        {
+          "type": "collector",
+          "title": "I'm a Collector",
+          "description": "I want to manage my collection, find new items, and trade with other collectors",
+          "icon": "user",
+          "steps": [
+            "Create Your Free Account",
+            "Add Your Collection",
+            "Create Your Wishlist",
+            "Find Swap Partners",
+            "Start Trading"
+          ],
+          "cta": "Start Collecting Now"
+        },
+        {
+          "type": "seller",
+          "title": "I'm a Seller",
+          "description": "I want to list my collectibles for sale and reach collectors worldwide",
+          "icon": "shopping-cart",
+          "steps": [
+            "Create Your Seller Account",
+            "List Your Items",
+            "Set Your Prices",
+            "Reach Global Buyers",
+            "Complete Sales"
+          ],
+          "cta": "Start Selling Today"
+        },
+        {
+          "type": "explorer",
+          "title": "I'm Exploring",
+          "description": "I'm new to collecting and want to learn what Colnect has to offer",
+          "icon": "search",
+          "steps": [
+            "Browse Our Catalogs",
+            "Learn About Collecting",
+            "Find Your Interest",
+            "Join the Community",
+            "Start Your Collection"
+          ],
+          "cta": "Explore Collections"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Loved by Collectors Worldwide",
+      "layout": "3-column-grid",
+      "items": [
+        {
+          "name": "Maria Santos",
+          "location": "Brazil",
+          "type": "Stamp Collector",
+          "rating": 5,
+          "quote": "I've been collecting stamps for 30 years, but Colnect revolutionized my hobby. I've completed more sets in the past year than in the previous five!"
+        },
+        {
+          "name": "James Wilson",
+          "location": "UK",
+          "type": "Coin Collector",
+          "rating": 5,
+          "quote": "The auto-matching feature is incredible! It found collectors who had exactly what I needed. Made 15 successful trades in my first month."
+        },
+        {
+          "name": "Anna Kowalski",
+          "location": "Poland",
+          "type": "Banknote Collector",
+          "rating": 5,
+          "quote": "As a new collector, the community support has been amazing. Everyone is so helpful and welcoming. I've learned so much!"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "format": "accordion",
+      "totalQuestions": 12,
+      "categories": [
+        "Platform Overview",
+        "Getting Started",
+        "Trading & Safety",
+        "Features & Tools",
+        "Community & Support"
+      ]
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "channels": [
+        {
+          "type": "whatsapp",
+          "title": "WhatsApp Support",
+          "description": "Get instant help from our support team",
+          "link": "https://wa.me/1234567890",
+          "color": "green"
+        },
+        {
+          "type": "email",
+          "title": "Email Support",
+          "description": "Send us an email and we'll get back to you within 24 hours",
+          "link": "mailto:support@colnect.com",
+          "color": "blue"
+        },
+        {
+          "type": "forum",
+          "title": "Community Forum",
+          "description": "Join discussions with other collectors",
+          "link": "https://forum.colnect.com",
+          "color": "purple"
+        }
+      ],
+      "socialMedia": [
+        { "platform": "facebook", "url": "https://facebook.com/colnect" },
+        { "platform": "twitter", "url": "https://twitter.com/colnect" },
+        { "platform": "instagram", "url": "https://instagram.com/colnect" },
+        { "platform": "youtube", "url": "https://youtube.com/colnect" }
+      ],
+      "officeInfo": {
+        "company": "Colnect Ltd.",
+        "address": "123 Collector's Street, Tel Aviv, Israel 12345",
+        "phone": "+972-3-123-4567",
+        "email": "info@colnect.com"
+      }
+    }
+  },
+  "seo": {
+    "title": "Colnect: The World's Largest Collectors Community",
+    "description": "Join 400,000+ collectors worldwide. Manage your collection, discover rare items, and trade stamps, coins, banknotes with collectors from 250+ countries. Free to start!",
+    "keywords": [
+      "collectors community",
+      "stamp collecting",
+      "coin collecting",
+      "banknote collecting",
+      "collectibles trading",
+      "collection management",
+      "collector marketplace",
+      "philatelic community",
+      "numismatic community"
+    ],
+    "openGraph": {
+      "title": "Colnect: The World's Largest Collectors Community",
+      "description": "Join 400,000+ collectors worldwide. Manage your collection, discover rare items, and trade with collectors from 250+ countries.",
+      "image": "/images/collection-image.jpeg",
+      "url": "https://colnect.com"
+    }
+  },
+  "analytics": {
+    "utmParameters": {
+      "source": "landing_page",
+      "medium": "website",
+      "campaign": "colnect_promo"
+    },
+    "conversionGoals": ["account_creation", "first_collection_item_added", "first_trade_initiated", "premium_upgrade"]
+  },
+  "technical": {
+    "framework": "Next.js 14",
+    "styling": "Tailwind CSS",
+    "components": "shadcn/ui",
+    "icons": "Lucide React",
+    "responsive": true,
+    "accessibility": "WCAG 2.1 AA compliant",
+    "performance": {
+      "lazyLoading": true,
+      "imageOptimization": true,
+      "codesplitting": true
+    }
+  }
+}
