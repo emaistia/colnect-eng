@@ -1,482 +1,421 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import {
-  Search,
-  Users,
-  Shield,
-  Menu,
-  X,
-  ArrowRight,
-  CheckCircle,
-  Globe,
-  MessageSquare,
-  Heart,
-  Compass,
-} from "lucide-react"
-import Image from "next/image"
+import { ArrowRight, Star, Users, Globe, Shield, TrendingUp, Check, Menu, X, Clock, Target } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
+import { useState } from "react"
 import { SignupModal } from "../components/signup-modal"
-import { FAQSection } from "../components/faq-section"
-import { ContactSection } from "../components/contact-section"
-import { MobileApps } from "../components/mobile-apps"
+import { FaqSection } from "../components/faq-section"
 import { LanguageSelector } from "../components/language-selector"
-import { useLanguage } from "@/lib/use-language"
+import { useTranslation } from "@/lib/use-language"
 
 export default function PathPage() {
-  const { t } = useLanguage()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { t } = useTranslation()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const features = [
+  const pathSteps = [
     {
-      icon: Search,
-      title: t('catalogTitle'),
-      description: t('catalogDescription')
+      step: 1,
+      icon: Target,
+      title: "Define Your Focus",
+      description: "Choose your collecting theme and set clear goals for what you want to achieve.",
+      duration: "Week 1",
+      actions: ["Pick a category", "Set budget limits", "Define collection scope"],
     },
     {
+      step: 2,
+      icon: Globe,
+      title: "Research & Learn",
+      description: "Study your chosen field, understand market values, and identify key items.",
+      duration: "Weeks 2-4",
+      actions: ["Study price guides", "Join collector forums", "Follow market trends"],
+    },
+    {
+      step: 3,
       icon: Shield,
-      title: t('tradingTitle'),
-      description: t('tradingDescription')
+      title: "Start Collecting",
+      description: "Make your first purchases from reputable sources and build your foundation.",
+      duration: "Months 2-6",
+      actions: ["Buy starter items", "Verify authenticity", "Document everything"],
     },
     {
-      icon: Users,
-      title: t('communityTitle'),
-      description: t('communityDescription')
-    }
+      step: 4,
+      icon: TrendingUp,
+      title: "Grow & Refine",
+      description: "Expand strategically, upgrade items, and develop expertise in your field.",
+      duration: "Ongoing",
+      actions: ["Upgrade collection", "Network with experts", "Share knowledge"],
+    },
   ]
 
-  const stats = [
-    { number: '2M+', label: 'Active Collectors' },
-    { number: '50M+', label: 'Cataloged Items' },
-    { number: '600+', label: 'Categories' },
-    { number: '195', label: 'Countries' }
-  ]
-
-  const collectingCategories = [
-    { name: 'Stamps', count: '15M+', color: 'bg-red-100 text-red-800' },
-    { name: 'Coins', count: '12M+', color: 'bg-yellow-100 text-yellow-800' },
-    { name: 'Banknotes', count: '8M+', color: 'bg-green-100 text-green-800' },
-    { name: 'Postcards', count: '6M+', color: 'bg-blue-100 text-blue-800' },
-    { name: 'Phone Cards', count: '4M+', color: 'bg-purple-100 text-purple-800' },
-    { name: 'Trading Cards', count: '3M+', color: 'bg-pink-100 text-pink-800' }
+  const collectorLevels = [
+    {
+      level: "Beginner",
+      description: "Just starting your collecting journey",
+      timeframe: "0-6 months",
+      focus: "Learning basics and building foundation",
+      tips: ["Start small", "Focus on one category", "Learn to authenticate"],
+      color: "bg-green-100 text-green-800",
+    },
+    {
+      level: "Intermediate",
+      description: "Building knowledge and expanding collection",
+      timeframe: "6 months - 2 years",
+      focus: "Strategic growth and specialization",
+      tips: ["Specialize in subcategories", "Network with other collectors", "Track market values"],
+      color: "bg-blue-100 text-blue-800",
+    },
+    {
+      level: "Advanced",
+      description: "Expert knowledge and refined collection",
+      timeframe: "2+ years",
+      focus: "High-value items and expertise sharing",
+      tips: ["Seek rare items", "Mentor new collectors", "Consider selling duplicates"],
+      color: "bg-purple-100 text-purple-800",
+    },
   ]
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
-      }`}>
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/images/colnect-logo.png"
-                alt="Colnect"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
-              <span className="text-2xl font-bold text-green-600">Colnect</span>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-green-600 transition-colors">
-                {t('features')}
-              </a>
-              <Link href="/premium" className="text-gray-600 hover:text-green-600 transition-colors">
-                {t('pricing')}
-              </Link>
-              <a href="#about" className="text-gray-600 hover:text-green-600 transition-colors">
-                {t('about')}
-              </a>
-              <a href="#contact" className="text-gray-600 hover:text-green-600 transition-colors">
-                {t('contact')}
-              </a>
-            </nav>
-            
-            <div className="hidden md:flex items-center space-x-4">
+            <Link href="/" className="flex items-center gap-2">
+              <Image src="/images/colnect-logo.png" alt="Colnect Logo" width={32} height={32} className="w-8 h-8" />
+              <span className="font-bold text-xl">Colnect</span>
+            </Link>
+
+            <div className="flex items-center gap-4">
               <LanguageSelector />
-              <SignupModal campaign="colnect_path" source="path_page" medium="header">
-                <Button variant="outline">{t('signUp')}</Button>
-              </SignupModal>
-              <SignupModal campaign="colnect_path" source="path_page" medium="header">
-                <Button className="bg-green-600 hover:bg-green-700">{t('getStarted')}</Button>
-              </SignupModal>
+              <div className="hidden md:flex items-center gap-4">
+                <Button variant="ghost">{t("logIn")}</Button>
+                <SignupModal>
+                  <Button>{t("getStarted")}</Button>
+                </SignupModal>
+              </div>
+
+              <button
+                className="md:hidden"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? t("closeMenu") : t("openMenu")}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
             </div>
-            
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
           </div>
-          
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t">
-              <nav className="flex flex-col space-y-4 mt-4">
-                <a href="#features" className="text-gray-600 hover:text-green-600 transition-colors">
-                  {t('features')}
-                </a>
-                <Link href="/premium" className="text-gray-600 hover:text-green-600 transition-colors">
-                  {t('pricing')}
-                </Link>
-                <a href="#about" className="text-gray-600 hover:text-green-600 transition-colors">
-                  {t('about')}
-                </a>
-                <a href="#contact" className="text-gray-600 hover:text-green-600 transition-colors">
-                  {t('contact')}
-                </a>
-                <div className="flex flex-col space-y-2 pt-4 border-t">
-                  <LanguageSelector />
-                  <SignupModal campaign="colnect_path" source="path_page" medium="mobile_menu">
-                    <Button variant="outline" className="w-full bg-transparent">{t('signUp')}</Button>
-                  </SignupModal>
-                  <SignupModal campaign="colnect_path" source="path_page" medium="mobile_menu">
-                    <Button className="w-full bg-green-600 hover:bg-green-700">{t('getStarted')}</Button>
-                  </SignupModal>
-                </div>
-              </nav>
-            </div>
-          )}
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-green-50 to-emerald-100">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="text-center lg:text-left">
-                <Badge className="mb-6 bg-green-100 text-green-800 hover:bg-green-200">
-                  <Compass className="w-4 h-4 mr-2" />
-                  Your Personalized Collecting Path
-                </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  {t('heroTitle')}
-                </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  {t('heroSubtitle')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <SignupModal campaign="colnect_path" source="path_page" medium="hero">
-                    <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                      {t('startCollecting')}
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </SignupModal>
-                  <Button size="lg" variant="outline">
-                    {t('learnMore')}
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="relative">
-                <div className="relative z-10">
-                  <Image
-                    src="/images/collection-image.jpeg"
-                    alt="Collection showcase"
-                    width={600}
-                    height={400}
-                    className="rounded-2xl shadow-2xl"
-                  />
-                </div>
-                <div className="absolute -top-4 -right-4 w-72 h-72 bg-green-200 rounded-full opacity-20"></div>
-                <div className="absolute -bottom-4 -left-4 w-64 h-64 bg-emerald-200 rounded-full opacity-20"></div>
-              </div>
-            </div>
-          </div>
+      <section className="py-20 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h1 className="text-5xl font-bold mb-6">Your Personal Collecting Path</h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Follow our proven step-by-step guide to build an amazing collection, from beginner to expert.
+          </p>
+          <SignupModal>
+            <Button size="lg" className="text-lg px-8 py-6">
+              Begin Your Path
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </SignupModal>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat, index) => (
-                <div key={index}>
-                  <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">
-                    {stat.number}
+      {/* Path Steps Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Your 4-Step Collecting Journey</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              A structured approach to building your dream collection
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {pathSteps.map((step, index) => {
+              const IconComponent = step.icon
+              const isEven = index % 2 === 0
+
+              return (
+                <div key={index} className={`flex items-center gap-8 ${isEven ? "flex-row" : "flex-row-reverse"}`}>
+                  <div className="flex-1">
+                    <Card className="hover:shadow-lg transition-shadow">
+                      <CardHeader>
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full font-bold text-lg">
+                            {step.step}
+                          </div>
+                          <div>
+                            <CardTitle className="text-xl">{step.title}</CardTitle>
+                            <div className="flex items-center gap-2 mt-1">
+                              <Clock className="h-4 w-4 text-gray-500" />
+                              <span className="text-sm text-gray-500">{step.duration}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <CardDescription className="text-base">{step.description}</CardDescription>
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-sm">Key Actions:</h4>
+                          <ul className="space-y-1">
+                            {step.actions.map((action, actionIndex) => (
+                              <li key={actionIndex} className="flex items-center gap-2 text-sm text-gray-600">
+                                <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                                {action}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  <div className="text-gray-600">{stat.label}</div>
+
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                      <IconComponent className="h-8 w-8 text-primary" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 hidden lg:block">{/* Spacer for alternating layout */}</div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {t('featuresTitle')}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                {t('featuresSubtitle')}
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
+      {/* Collector Levels Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Collector Development Levels</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Understand where you are and what comes next in your collecting journey
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {collectorLevels.map((level, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl">{level.level}</CardTitle>
+                    <Badge className={level.color}>{level.timeframe}</Badge>
+                  </div>
+                  <CardDescription className="text-base">{level.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">Primary Focus:</h4>
+                    <p className="text-sm text-gray-600">{level.focus}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-sm">Key Tips:</h4>
+                    <ul className="space-y-1">
+                      {level.tips.map((tip, tipIndex) => (
+                        <li key={tipIndex} className="flex items-center gap-2 text-sm text-gray-600">
+                          <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Progress Tracking Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Track Your Progress</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Monitor your collecting journey with our comprehensive tracking tools
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Target,
+                title: "Collection Goals",
+                description: "Set and track specific collecting objectives",
+                metric: "12/20 Goals",
+              },
+              {
+                icon: TrendingUp,
+                title: "Value Tracking",
+                description: "Monitor your collection's market value",
+                metric: "+15% This Year",
+              },
+              {
+                icon: Users,
+                title: "Trading Activity",
+                description: "Track successful trades and exchanges",
+                metric: "47 Trades",
+              },
+              {
+                icon: Star,
+                title: "Expertise Level",
+                description: "Measure your knowledge and experience",
+                metric: "Intermediate",
+              },
+            ].map((item, index) => {
+              const IconComponent = item.icon
+              return (
                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                      <feature.icon className="h-8 w-8 text-green-600" />
+                    <div className="mx-auto mb-4 p-3 bg-primary/10 rounded-full w-fit">
+                      <IconComponent className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <CardDescription className="text-sm mb-3">{item.description}</CardDescription>
+                    <div className="text-2xl font-bold text-primary">{item.metric}</div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Explore Collecting Categories
-              </h2>
-              <p className="text-xl text-gray-600">
-                Discover millions of items across hundreds of collecting categories
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {collectingCategories.map((category, index) => (
-                <Card key={index} className="text-center hover:shadow-md transition-shadow cursor-pointer">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg mx-auto mb-3"></div>
-                    <h3 className="font-semibold mb-1">{category.name}</h3>
-                    <Badge variant="secondary" className={category.color}>
-                      {category.count}
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+      {/* Personalized Recommendations */}
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl font-bold mb-6">Get Personalized Guidance</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Our AI-powered system provides customized recommendations based on your collecting interests and experience
+            level.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {["Smart item suggestions", "Market timing alerts", "Expert collector matching"].map((feature, index) => (
+              <div key={index} className="flex items-center gap-2 justify-center">
+                <Check className="h-5 w-5 text-green-500" />
+                <span>{feature}</span>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* Mobile Apps Section */}
-      <MobileApps />
-
-      {/* Pricing Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {t('pricingTitle')}
-              </h2>
-              <p className="text-xl text-gray-600">
-                {t('pricingSubtitle')}
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Free Plan */}
-              <Card className="relative">
-                <CardHeader>
-                  <CardTitle className="text-2xl">{t('freeTitle')}</CardTitle>
-                  <CardDescription>{t('freeDescription')}</CardDescription>
-                  <div className="text-4xl font-bold">{t('freePrice')}</div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Basic collection cataloging</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Community access</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Basic trading features</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Mobile app access</span>
-                    </li>
-                  </ul>
-                  <SignupModal campaign="colnect_path" source="path_page" medium="pricing">
-                    <Button className="w-full bg-transparent" variant="outline">
-                      Get Started {t('free')}
-                    </Button>
-                  </SignupModal>
-                </CardContent>
-              </Card>
-
-              {/* Premium Plan */}
-              <Card className="relative border-2 border-green-600 shadow-lg">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-green-600 text-white">
-                    {t('popular')}
-                  </Badge>
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-2xl">{t('premiumTitle')}</CardTitle>
-                  <CardDescription>{t('premiumDescription')}</CardDescription>
-                  <div className="text-4xl font-bold">
-                    {t('premiumPrice')}
-                    <span className="text-lg text-gray-500">{t('month')}</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Everything in Free</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Unlimited collection items</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Advanced analytics</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Priority support</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Export capabilities</span>
-                    </li>
-                  </ul>
-                  <Link href="/premium">
-                    <Button className="w-full bg-green-600 hover:bg-green-700">
-                      Upgrade to Premium
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          <SignupModal>
+            <Button size="lg" className="text-lg px-8 py-6">
+              Get My Personal Path
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </SignupModal>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <FaqSection />
 
-      {/* Contact Section */}
-      <div id="contact">
-        <ContactSection />
-      </div>
-
-      {/* Final CTA Section - Compressed for laptop screens */}
-      <section className="py-8 lg:py-12 bg-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl lg:text-3xl font-bold mb-3 lg:mb-4">
-              Ready to Start Your Collecting Journey?
-            </h2>
-            <p className="text-lg lg:text-xl mb-6 lg:mb-8 opacity-90">
-              Join millions of collectors worldwide and discover the joy of organized collecting.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center mb-6 lg:mb-8">
-              <SignupModal campaign="colnect_path" source="path_page" medium="final_section">
-                <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100">
-                  Start Collecting Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </SignupModal>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600 bg-transparent">
-                Learn More
-              </Button>
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Image src="/images/colnect-logo.png" alt="Colnect Logo" width={32} height={32} className="w-8 h-8" />
+                <span className="font-bold text-xl">Colnect</span>
+              </div>
+              <p className="text-gray-400">{t("footerDescription")}</p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:gap-4 text-sm opacity-75">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4" />
-                <span>Free to start</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4" />
-                <span>Join 2M+ collectors</span>
-              </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Your Path</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Getting Started
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Progress Tracking
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Expert Guidance
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Personalized Tips
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Learning Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Video Tutorials
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Expert Interviews
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Market Reports
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Footer - Compressed margins */}
-      <footer className="bg-gray-900 text-white py-8 lg:py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-6 lg:gap-8 mb-6 lg:mb-8">
-              <div>
-                <div className="flex items-center space-x-2 mb-4">
-                  <Image
-                    src="/images/colnect-logo.png"
-                    alt="Colnect"
-                    width={32}
-                    height={32}
-                    className="rounded"
-                  />
-                  <span className="text-xl font-bold">Colnect</span>
-                </div>
-                <p className="text-gray-400 mb-4">
-                  {t('footerDescription')}
-                </p>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    <MessageSquare className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    <Heart className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    <Globe className="h-5 w-5" />
-                  </a>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold mb-4">Product</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li><a href="#features" className="hover:text-white">{t('features')}</a></li>
-                  <li><Link href="/premium" className="hover:text-white">{t('pricing')}</Link></li>
-                  <li><a href="#" className="hover:text-white">Mobile Apps</a></li>
-                  <li><a href="#" className="hover:text-white">API</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold mb-4">Support</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li><a href="#" className="hover:text-white">Help Center</a></li>
-                  <li><a href="#contact" className="hover:text-\
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Colnect. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}

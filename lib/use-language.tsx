@@ -1,14 +1,14 @@
 "use client"
 
-import { useLanguage as useLanguageContext } from "./language-context"
-import { translations, type TranslationKey } from "./translations"
+import { useLanguage } from "./language-context"
+import { translations } from "./translations"
 
-export function useLanguage() {
-  const { language, setLanguage } = useLanguageContext()
+export function useTranslation() {
+  const { language } = useLanguage()
 
-  const t = (key: TranslationKey): string => {
-    return translations[language]?.[key] || translations.en[key] || key
+  const t = (key: keyof typeof translations.en): string => {
+    return translations[language][key] || translations.en[key] || key
   }
 
-  return { language, setLanguage, t }
+  return { t, language }
 }

@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react"
 
 export default function Loading() {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-green-50 to-emerald-100">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-purple-50 to-pink-50">
       {/* Navigation Skeleton */}
       <header className="w-full border-b bg-white sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -154,11 +154,10 @@ export default function Loading() {
         {/* Loading Indicator */}
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
           <div className="relative">
-            <div className="w-16 h-16 border-4 border-green-200 rounded-full animate-pulse"></div>
-            <Loader2 className="h-8 w-8 animate-spin absolute top-4 left-4 text-green-600" />
+            <div className="w-16 h-16 border-4 border-purple-600 rounded-full animate-pulse"></div>
+            <Loader2 className="h-8 w-8 animate-spin absolute top-4 left-4 text-purple-600" />
           </div>
-          <p className="text-muted-foreground mt-4 text-lg">Loading Your Collecting Path...</p>
-          <p className="text-sm text-muted-foreground mt-2">Preparing your personalized journey</p>
+          <p className="text-gray-600 mt-4 text-lg">Loading your collecting path...</p>
         </div>
       </main>
     </div>

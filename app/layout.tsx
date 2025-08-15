@@ -8,15 +8,25 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Colnect - The Ultimate Collecting Platform",
+  title: "Colnect - The Ultimate Platform for Collectors",
   description:
-    "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
-  keywords: "collecting, collectibles, catalog, trade, stamps, coins, banknotes, postcards",
+    "Join millions of collectors worldwide. Catalog, trade, and discover collectibles from stamps to coins, banknotes to phone cards.",
+  keywords: "collectibles, stamps, coins, banknotes, phone cards, trading, catalog, collectors",
   authors: [{ name: "Colnect" }],
+  creator: "Colnect",
+  publisher: "Colnect",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://colnect.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Colnect - The Ultimate Collecting Platform",
-    description:
-      "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
+    title: "Colnect - The Ultimate Platform for Collectors",
+    description: "Join millions of collectors worldwide. Catalog, trade, and discover collectibles.",
     url: "https://colnect.com",
     siteName: "Colnect",
     images: [
@@ -24,7 +34,7 @@ export const metadata: Metadata = {
         url: "/images/colnect-full-logo.png",
         width: 1200,
         height: 630,
-        alt: "Colnect Logo",
+        alt: "Colnect - Collectors Platform",
       },
     ],
     locale: "en_US",
@@ -32,9 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Colnect - The Ultimate Collecting Platform",
-    description:
-      "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
+    title: "Colnect - The Ultimate Platform for Collectors",
+    description: "Join millions of collectors worldwide. Catalog, trade, and discover collectibles.",
     images: ["/images/colnect-full-logo.png"],
   },
   robots: {
@@ -57,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
           {children}

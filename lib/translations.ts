@@ -1,37 +1,42 @@
 export const translations = {
   en: {
-    // Header
+    // Navigation
     features: "Features",
     pricing: "Pricing",
     about: "About",
     contact: "Contact",
-    signUp: "Sign Up",
     getStarted: "Get Started",
 
     // Hero Section
     heroTitle: "The Ultimate Platform for Collectors Worldwide",
     heroSubtitle:
-      "Join millions of collectors in cataloging, trading, and discovering rare collectibles. From stamps to coins, banknotes to postcards - your collection starts here.",
+      "Join millions of collectors who trust Colnect to catalog, trade, and discover collectibles from stamps to coins, banknotes to phone cards.",
     startCollecting: "Start Collecting",
     learnMore: "Learn More",
 
-    // Trust Indicators
-    trustedBy: "Trusted by over 2 million collectors worldwide",
+    // Stats
+    collectors: "Active Collectors",
+    items: "Cataloged Items",
+    countries: "Countries",
 
     // Features
     featuresTitle: "Everything You Need to Build Your Collection",
-    featuresSubtitle: "Comprehensive tools and features designed specifically for collectors",
+    featuresSubtitle: "Powerful tools and features designed specifically for collectors",
 
     catalogTitle: "Comprehensive Catalog",
     catalogDescription:
-      "Access millions of items across 600+ categories with detailed information and high-quality images.",
+      "Access the world's largest database of collectibles with detailed information and high-quality images.",
 
     tradingTitle: "Safe Trading",
     tradingDescription:
-      "Trade with collectors worldwide using our secure platform with built-in protection and verification.",
+      "Connect with collectors worldwide through our secure trading platform with built-in protection.",
+
+    trackingTitle: "Collection Tracking",
+    trackingDescription: "Keep track of your collection's value, wishlist items, and trading history all in one place.",
 
     communityTitle: "Global Community",
-    communityDescription: "Connect with fellow collectors, share knowledge, and discover new collecting opportunities.",
+    communityDescription:
+      "Join forums, participate in discussions, and learn from experienced collectors around the world.",
 
     // Mobile Apps
     mobileTitle: "Take Your Collection Anywhere",
@@ -50,65 +55,107 @@ export const translations = {
     premiumPrice: "$9.99",
     premiumDescription: "For serious collectors",
 
-    // FAQ
-    faqTitle: "Frequently Asked Questions",
+    proTitle: "Pro",
+    proPrice: "$19.99",
+    proDescription: "For professional dealers",
+
+    // Features list
+    basicCatalog: "Basic catalog access",
+    limitedTrades: "Up to 10 trades per month",
+    communityAccess: "Community access",
+    fullCatalog: "Full catalog access",
+    unlimitedTrades: "Unlimited trades",
+    prioritySupport: "Priority support",
+    advancedTools: "Advanced collection tools",
+    dealerTools: "Professional dealer tools",
+    bulkOperations: "Bulk operations",
+    apiAccess: "API access",
+    customReports: "Custom reports",
 
     // Contact
     contactTitle: "Get in Touch",
-    contactSubtitle: "Have questions? We're here to help.",
+    contactSubtitle: "Have questions? We'd love to hear from you.",
+
+    name: "Name",
+    email: "Email",
+    message: "Message",
+    sendMessage: "Send Message",
+
+    // FAQ
+    faqTitle: "Frequently Asked Questions",
 
     // Footer
-    footerDescription: "The world's largest collecting community with millions of collectors and items.",
+    footerDescription: "The world's largest platform for collectors, connecting millions of enthusiasts worldwide.",
 
-    // Common
-    month: "/month",
-    year: "/year",
-    free: "Free",
-    popular: "Popular",
-    comingSoon: "Coming Soon",
+    // Buttons and CTAs
+    choosePlan: "Choose Plan",
+    signUp: "Sign Up",
+    logIn: "Log In",
+
+    // Success messages
+    subscribeSuccess: "Thank you for subscribing!",
+    messageSuccess: "Message sent successfully!",
+
+    // Error messages
+    subscribeError: "Failed to subscribe. Please try again.",
+    messageError: "Failed to send message. Please try again.",
+
+    // Loading states
+    loading: "Loading...",
+    sending: "Sending...",
+
+    // Accessibility
+    closeDialog: "Close dialog",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
   },
-
   id: {
-    // Header
+    // Navigation
     features: "Fitur",
     pricing: "Harga",
     about: "Tentang",
     contact: "Kontak",
-    signUp: "Daftar",
     getStarted: "Mulai",
 
     // Hero Section
     heroTitle: "Platform Terbaik untuk Kolektor di Seluruh Dunia",
     heroSubtitle:
-      "Bergabunglah dengan jutaan kolektor dalam mengkatalog, memperdagangkan, dan menemukan koleksi langka. Dari perangko hingga koin, uang kertas hingga kartu pos - koleksi Anda dimulai di sini.",
+      "Bergabunglah dengan jutaan kolektor yang mempercayai Colnect untuk mengkatalog, memperdagangkan, dan menemukan koleksi dari perangko hingga koin, uang kertas hingga kartu telepon.",
     startCollecting: "Mulai Mengoleksi",
     learnMore: "Pelajari Lebih Lanjut",
 
-    // Trust Indicators
-    trustedBy: "Dipercaya oleh lebih dari 2 juta kolektor di seluruh dunia",
+    // Stats
+    collectors: "Kolektor Aktif",
+    items: "Item Terkatalog",
+    countries: "Negara",
 
     // Features
     featuresTitle: "Semua yang Anda Butuhkan untuk Membangun Koleksi",
-    featuresSubtitle: "Alat dan fitur komprehensif yang dirancang khusus untuk kolektor",
+    featuresSubtitle: "Alat dan fitur canggih yang dirancang khusus untuk kolektor",
 
     catalogTitle: "Katalog Komprehensif",
-    catalogDescription: "Akses jutaan item di 600+ kategori dengan informasi detail dan gambar berkualitas tinggi.",
+    catalogDescription:
+      "Akses database koleksi terbesar di dunia dengan informasi detail dan gambar berkualitas tinggi.",
 
     tradingTitle: "Perdagangan Aman",
     tradingDescription:
-      "Berdagang dengan kolektor di seluruh dunia menggunakan platform aman kami dengan perlindungan dan verifikasi bawaan.",
+      "Terhubung dengan kolektor di seluruh dunia melalui platform perdagangan aman dengan perlindungan terintegrasi.",
+
+    trackingTitle: "Pelacakan Koleksi",
+    trackingDescription: "Lacak nilai koleksi, item wishlist, dan riwayat perdagangan Anda dalam satu tempat.",
 
     communityTitle: "Komunitas Global",
-    communityDescription: "Terhubung dengan sesama kolektor, berbagi pengetahuan, dan temukan peluang mengoleksi baru.",
+    communityDescription:
+      "Bergabung dengan forum, berpartisipasi dalam diskusi, dan belajar dari kolektor berpengalaman di seluruh dunia.",
 
     // Mobile Apps
-    mobileTitle: "Bawa Koleksi Anda ke Mana Saja",
+    mobileTitle: "Bawa Koleksi Anda Kemana Saja",
     mobileSubtitle: "Akses koleksi Anda saat bepergian dengan aplikasi mobile kami",
     downloadApp: "Unduh Aplikasi",
 
     // Pricing
     pricingTitle: "Pilih Paket Anda",
-    pricingSubtitle: "Mulai gratis dan tingkatkan seiring berkembangnya koleksi Anda",
+    pricingSubtitle: "Mulai gratis dan upgrade seiring berkembangnya koleksi Anda",
 
     freeTitle: "Gratis",
     freePrice: "$0",
@@ -118,23 +165,58 @@ export const translations = {
     premiumPrice: "$9.99",
     premiumDescription: "Untuk kolektor serius",
 
-    // FAQ
-    faqTitle: "Pertanyaan yang Sering Diajukan",
+    proTitle: "Pro",
+    proPrice: "$19.99",
+    proDescription: "Untuk dealer profesional",
+
+    // Features list
+    basicCatalog: "Akses katalog dasar",
+    limitedTrades: "Hingga 10 perdagangan per bulan",
+    communityAccess: "Akses komunitas",
+    fullCatalog: "Akses katalog penuh",
+    unlimitedTrades: "Perdagangan tak terbatas",
+    prioritySupport: "Dukungan prioritas",
+    advancedTools: "Alat koleksi lanjutan",
+    dealerTools: "Alat dealer profesional",
+    bulkOperations: "Operasi massal",
+    apiAccess: "Akses API",
+    customReports: "Laporan kustom",
 
     // Contact
     contactTitle: "Hubungi Kami",
-    contactSubtitle: "Ada pertanyaan? Kami siap membantu.",
+    contactSubtitle: "Ada pertanyaan? Kami senang mendengar dari Anda.",
+
+    name: "Nama",
+    email: "Email",
+    message: "Pesan",
+    sendMessage: "Kirim Pesan",
+
+    // FAQ
+    faqTitle: "Pertanyaan yang Sering Diajukan",
 
     // Footer
-    footerDescription: "Komunitas mengoleksi terbesar di dunia dengan jutaan kolektor dan item.",
+    footerDescription: "Platform terbesar di dunia untuk kolektor, menghubungkan jutaan penggemar di seluruh dunia.",
 
-    // Common
-    month: "/bulan",
-    year: "/tahun",
-    free: "Gratis",
-    popular: "Populer",
-    comingSoon: "Segera Hadir",
+    // Buttons and CTAs
+    choosePlan: "Pilih Paket",
+    signUp: "Daftar",
+    logIn: "Masuk",
+
+    // Success messages
+    subscribeSuccess: "Terima kasih telah berlangganan!",
+    messageSuccess: "Pesan berhasil dikirim!",
+
+    // Error messages
+    subscribeError: "Gagal berlangganan. Silakan coba lagi.",
+    messageError: "Gagal mengirim pesan. Silakan coba lagi.",
+
+    // Loading states
+    loading: "Memuat...",
+    sending: "Mengirim...",
+
+    // Accessibility
+    closeDialog: "Tutup dialog",
+    openMenu: "Buka menu",
+    closeMenu: "Tutup menu",
   },
 }
-
-export type TranslationKey = keyof typeof translations.en

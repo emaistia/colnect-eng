@@ -3,7 +3,7 @@
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
-type Language = "en" | "id" | "es" | "fr" | "de" | "pt" | "ru" | "zh" | "ja" | "ar"
+type Language = "en" | "id"
 
 interface LanguageContextType {
   language: Language
@@ -16,23 +16,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("en")
 
   useEffect(() => {
-    // Get language from localStorage or browser preference
-    const savedLanguage = localStorage.getItem("colnect-language") as Language
-    if (savedLanguage) {
+    const savedLanguage = localStorage.getItem("language") as Language
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "id")) {
       setLanguage(savedLanguage)
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.split("-")[0] as Language
-      const supportedLanguages: Language[] = ["en", "id", "es", "fr", "de", "pt", "ru", "zh", "ja", "ar"]
-      if (supportedLanguages.includes(browserLang)) {
-        setLanguage(browserLang)
-      }
     }
   }, [])
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)
-    localStorage.setItem("colnect-language", lang)
+    localStorage.setItem("language", lang)
   }
 
   return (

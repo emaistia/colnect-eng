@@ -1,5 +1,3 @@
-import { Loader2 } from "lucide-react"
-
 export default function Loading() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -75,14 +73,10 @@ export default function Loading() {
         </section>
 
         {/* Loading Indicator */}
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-          <div className="text-center">
-            <div className="relative">
-              <div className="w-16 h-16 border-4 border-blue-200 rounded-full animate-pulse"></div>
-              <Loader2 className="h-8 w-8 animate-spin absolute top-4 left-4 text-blue-600" />
-            </div>
-            <p className="text-muted-foreground mt-4 text-lg">Loading Ways to Collect...</p>
-            <p className="text-sm text-muted-foreground mt-2">Discovering new collecting opportunities</p>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
+          <div className="text-center space-y-4">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto"></div>
+            <p className="text-gray-600">Loading your collecting journey...</p>
           </div>
         </div>
       </main>

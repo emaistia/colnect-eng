@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -11,60 +11,55 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Loader2 } from "lucide-react"
-import { subscribeToMailchimp } from "@/app/actions/mailchimp"
 import { useToast } from "@/components/ui/use-toast"
+import { subscribeToMailchimp } from "@/app/actions/mailchimp"
+import { useTranslation } from "@/lib/use-language"
 
 interface SignupModalProps {
   children: React.ReactNode
-  campaign?: string
-  source?: string
-  medium?: string
 }
 
-export function SignupModal({
-  children,
-  campaign = "default",
-  source = "website",
-  medium = "modal",
-}: SignupModalProps) {
-  const [open, setOpen] = useState(false)
+export function SignupModal({ children }: SignupModalProps) {
+  const [email, setEmail] = useState("")
+  const [name, setName] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
   const { toast } = useToast()
+  const { t } = useTranslation()
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email || !name || !agreedToTerms) return
+
     setIsLoading(true)
-    const formData = new FormData(event.currentTarget)
-
-    // Add UTM parameters to form data
-    formData.append("utm_campaign", campaign)
-    formData.append("utm_source", source)
-    formData.append("utm_medium", medium)
-
     try {
-      const result = await subscribeToMailchimp(formData)
+      const result = await subscribeToMailchimp(email)
 
       if (result.success) {
         toast({
-          title: "Welcome to Colnect!",
-          description: result.message,
+          title: t("subscribeSuccess"),
+          description: "Welcome to Colnect! We'll send you updates about new features and collecting tips.",
         })
+        setEmail("")
+        setName("")
+        setAgreedToTerms(false)
         setOpen(false)
       } else {
         toast({
-          title: "Subscription Failed",
-          description: result.error,
+          title: t("subscribeError"),
+          description: result.error || "Please try again later.",
           variant: "destructive",
         })
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
+        title: t("subscribeError"),
+        description: "Please try again later.",
         variant: "destructive",
       })
     } finally {
@@ -81,58 +76,43 @@ export function SignupModal({
           <DialogDescription>Start your collecting journey with millions of collectors worldwide.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">First Name</Label>
-              <Input id="firstName" name="firstName" placeholder="John" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Last Name</Label>
-              <Input id="lastName" name="lastName" placeholder="Doe" required />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="signup-name">{t("name")}</Label>
+            <Input
+              id="signup-name"
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              disabled={isLoading}
+            />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+            <Label htmlFor="signup-email">{t("email")}</Label>
+            <Input
+              id="signup-email"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={isLoading}
+            />
           </div>
-          <div className="space-y-3">
-            <Label>Collecting Interests (Optional)</Label>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="stamps" name="interests" value="stamps" />
-                <Label htmlFor="stamps" className="text-sm">
-                  Stamps
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="coins" name="interests" value="coins" />
-                <Label htmlFor="coins" className="text-sm">
-                  Coins
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="banknotes" name="interests" value="banknotes" />
-                <Label htmlFor="banknotes" className="text-sm">
-                  Banknotes
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="postcards" name="interests" value="postcards" />
-                <Label htmlFor="postcards" className="text-sm">
-                  Postcards
-                </Label>
-              </div>
-            </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              checked={agreedToTerms}
+              onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
+              disabled={isLoading}
+            />
+            <Label htmlFor="terms" className="text-sm">
+              I agree to the Terms of Service and Privacy Policy
+            </Label>
           </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Signing Up...
-              </>
-            ) : (
-              "Sign Up Free"
-            )}
+          <Button type="submit" className="w-full" disabled={isLoading || !email || !name || !agreedToTerms}>
+            {isLoading ? t("loading") : t("getStarted")}
           </Button>
         </form>
       </DialogContent>
