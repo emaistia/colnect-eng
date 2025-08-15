@@ -1,204 +1,186 @@
 "use client"
+
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Smartphone, Download, Star, Camera, Search, Bell } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Smartphone, Camera, Wifi, Star, Download } from "lucide-react"
+import Image from "next/image"
+import { useLanguage } from "@/lib/use-language"
 
-export default function MobileApps() {
+export function MobileApps() {
+  const { t } = useLanguage()
+
   return (
-    <section className="w-full py-16 md:py-24 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section className="py-24 bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <Smartphone className="h-4 w-4" />
-            Mobile Apps Available
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">{t("mobileTitle")}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t("mobileSubtitle")}</p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your Collection in Your Pocket</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Take Colnect with you wherever you go. Our mobile apps give you full access to your collection, instant item
-            identification, and real-time notifications.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Mobile App Mockup */}
-          <div className="relative">
-            <div className="relative mx-auto w-64 h-[500px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
-              <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
-                {/* Status Bar */}
-                <div className="bg-blue-600 h-12 flex items-center justify-center">
-                  <div className="text-white text-sm font-medium">Colnect</div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Mobile App Mockups */}
+            <div className="relative">
+              <div className="flex justify-center items-end space-x-4">
+                {/* Phone Mockup */}
+                <div className="relative">
+                  <div className="w-64 h-[500px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                      <div className="bg-blue-600 h-20 flex items-center justify-center">
+                        <Image
+                          src="/images/colnect-logo.png"
+                          alt="Colnect"
+                          width={120}
+                          height={40}
+                          className="brightness-0 invert"
+                        />
+                      </div>
+                      <div className="p-4 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-semibold">My Collection</h3>
+                          <Badge variant="secondary">2,847 items</Badge>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="bg-gray-100 rounded-lg p-3 text-center">
+                            <div className="w-12 h-12 bg-red-200 rounded-lg mx-auto mb-2"></div>
+                            <p className="text-xs font-medium">Stamps</p>
+                            <p className="text-xs text-gray-500">1,234</p>
+                          </div>
+                          <div className="bg-gray-100 rounded-lg p-3 text-center">
+                            <div className="w-12 h-12 bg-yellow-200 rounded-lg mx-auto mb-2"></div>
+                            <p className="text-xs font-medium">Coins</p>
+                            <p className="text-xs text-gray-500">856</p>
+                          </div>
+                          <div className="bg-gray-100 rounded-lg p-3 text-center">
+                            <div className="w-12 h-12 bg-green-200 rounded-lg mx-auto mb-2"></div>
+                            <p className="text-xs font-medium">Banknotes</p>
+                            <p className="text-xs text-gray-500">432</p>
+                          </div>
+                          <div className="bg-gray-100 rounded-lg p-3 text-center">
+                            <div className="w-12 h-12 bg-blue-200 rounded-lg mx-auto mb-2"></div>
+                            <p className="text-xs font-medium">Postcards</p>
+                            <p className="text-xs text-gray-500">325</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 bg-blue-600 rounded-full p-3 shadow-lg">
+                    <Camera className="h-6 w-6 text-white" />
+                  </div>
                 </div>
 
-                {/* App Content */}
-                <div className="p-4 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Search className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">Quick Search</div>
-                      <div className="text-xs text-gray-500">Find items instantly</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <Camera className="h-5 w-5 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">Photo Recognition</div>
-                      <div className="text-xs text-gray-500">Identify with camera</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Bell className="h-5 w-5 text-purple-600" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">Smart Notifications</div>
-                      <div className="text-xs text-gray-500">Never miss a match</div>
-                    </div>
-                  </div>
-
-                  {/* Collection Preview */}
-                  <div className="mt-6">
-                    <div className="text-sm font-medium mb-2">Recent Items</div>
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="aspect-square bg-gray-200 rounded"></div>
-                      <div className="aspect-square bg-gray-200 rounded"></div>
-                      <div className="aspect-square bg-gray-200 rounded"></div>
+                {/* Tablet Mockup */}
+                <div className="relative hidden md:block">
+                  <div className="w-80 h-60 bg-gray-900 rounded-2xl p-2 shadow-2xl">
+                    <div className="w-full h-full bg-white rounded-xl overflow-hidden">
+                      <div className="bg-blue-600 h-12 flex items-center justify-center">
+                        <Image
+                          src="/images/colnect-logo.png"
+                          alt="Colnect"
+                          width={80}
+                          height={24}
+                          className="brightness-0 invert"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <div className="grid grid-cols-4 gap-2">
+                          {[...Array(8)].map((_, i) => (
+                            <div key={i} className="bg-gray-100 rounded-lg p-2 text-center">
+                              <div className="w-8 h-8 bg-gradient-to-br from-blue-200 to-purple-200 rounded mx-auto mb-1"></div>
+                              <p className="text-xs">Item {i + 1}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
-              <Bell className="h-4 w-4" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-2 rounded-full shadow-lg">
-              <Camera className="h-4 w-4" />
-            </div>
-          </div>
+            {/* Features */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Powerful Mobile Features</h3>
+                <p className="text-muted-foreground">
+                  Our mobile apps bring the full power of Colnect to your pocket, with features designed specifically
+                  for collectors on the go.
+                </p>
+              </div>
 
-          {/* App Features */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Three Powerful Apps</h3>
-              <p className="text-gray-600 mb-6">
-                We've created specialized apps to give you the best mobile collecting experience possible.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {/* Colnect App */}
-              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-100 rounded-full flex-shrink-0">
-                      <Smartphone className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Colnect Mobile</h4>
-                      <p className="text-gray-600 mb-3">
-                        Full-featured app with complete access to your collection, trading, and community features.
-                      </p>
-                      <div className="flex items-center gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
-                        ))}
-                        <span className="text-sm text-gray-600 ml-2">4.8 (2.1k reviews)</span>
-                      </div>
-                      <div className="flex gap-3">
-                        <Button size="sm" className="bg-black text-white hover:bg-gray-800">
-                          <Download className="h-4 w-4 mr-2" />
-                          App Store
-                        </Button>
-                        <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
-                          <Download className="h-4 w-4 mr-2" />
-                          Google Play
-                        </Button>
-                      </div>
-                    </div>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-blue-100 p-3 rounded-lg">
+                    <Camera className="h-6 w-6 text-blue-600" />
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Catalog App */}
-              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-purple-100 rounded-full flex-shrink-0">
-                      <Search className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Colnect Catalog</h4>
-                      <p className="text-gray-600 mb-3">
-                        Browse our comprehensive catalog of 20M+ items with advanced search and filtering.
-                      </p>
-                      <div className="flex items-center gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
-                        ))}
-                        <span className="text-sm text-gray-600 ml-2">4.7 (1.8k reviews)</span>
-                      </div>
-                      <div className="flex gap-3">
-                        <Button size="sm" className="bg-black text-white hover:bg-gray-800">
-                          <Download className="h-4 w-4 mr-2" />
-                          App Store
-                        </Button>
-                        <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
-                          <Download className="h-4 w-4 mr-2" />
-                          Google Play
-                        </Button>
-                      </div>
-                    </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Smart Camera Recognition</h4>
+                    <p className="text-muted-foreground">
+                      Take a photo of any collectible and our AI will help identify it and add it to your collection
+                      instantly.
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
 
-              {/* Recognition App */}
-              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-green-100 rounded-full flex-shrink-0">
-                      <Camera className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Colnect Scanner</h4>
-                      <p className="text-gray-600 mb-3">
-                        Instantly identify collectibles using AI-powered image recognition technology.
-                      </p>
-                      <div className="flex items-center gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
-                        ))}
-                        <span className="text-sm text-gray-600 ml-2">4.9 (3.2k reviews)</span>
-                      </div>
-                      <div className="flex gap-3">
-                        <Button size="sm" className="bg-black text-white hover:bg-gray-800">
-                          <Download className="h-4 w-4 mr-2" />
-                          App Store
-                        </Button>
-                        <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
-                          <Download className="h-4 w-4 mr-2" />
-                          Google Play
-                        </Button>
-                      </div>
-                    </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-lg">
+                    <Wifi className="h-6 w-6 text-green-600" />
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Offline Access</h4>
+                    <p className="text-muted-foreground">
+                      Access your collection even without internet connection. Perfect for shows, markets, and remote
+                      locations.
+                    </p>
+                  </div>
+                </div>
 
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-2">Sync Across All Devices</h4>
-              <p className="text-gray-600 text-sm">
-                Your collection, wishlists, and trading activity automatically sync between web and mobile apps. Start
-                on your phone, continue on your computer.
-              </p>
+                <div className="flex items-start gap-4">
+                  <div className="bg-purple-100 p-3 rounded-lg">
+                    <Smartphone className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Native Performance</h4>
+                    <p className="text-muted-foreground">
+                      Lightning-fast native apps optimized for iOS and Android with smooth animations and intuitive
+                      gestures.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* App Store Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button size="lg" className="flex items-center gap-2">
+                  <Download className="h-5 w-5" />
+                  Download for iOS
+                </Button>
+                <Button size="lg" variant="outline" className="flex items-center gap-2 bg-transparent">
+                  <Download className="h-5 w-5" />
+                  Download for Android
+                </Button>
+              </div>
+
+              {/* App Ratings */}
+              <div className="flex items-center gap-6 pt-4 border-t">
+                <div className="text-center">
+                  <div className="flex items-center gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground">4.8 on App Store</p>
+                </div>
+                <div className="text-center">
+                  <div className="flex items-center gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground">4.7 on Google Play</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,158 +1,128 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, MessageCircle, Facebook, Twitter, Instagram, Youtube, MapPin, Phone } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Mail, MessageSquare, Phone, MapPin } from "lucide-react"
+import { useLanguage } from "@/lib/use-language"
 
-export default function ContactSection() {
-  const socialLinks = [
-    {
-      name: "Facebook",
-      icon: Facebook,
-      url: "https://facebook.com/colnect",
-      color: "hover:text-blue-600",
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      url: "https://twitter.com/colnect",
-      color: "hover:text-blue-400",
-    },
-    {
-      name: "Instagram",
-      icon: Instagram,
-      url: "https://instagram.com/colnect",
-      color: "hover:text-pink-600",
-    },
-    {
-      name: "YouTube",
-      icon: Youtube,
-      url: "https://youtube.com/colnect",
-      color: "hover:text-red-600",
-    },
-  ]
+export function ContactSection() {
+  const { t } = useLanguage()
 
   return (
-    <section id="contact" className="w-full py-16 md:py-24 bg-gray-50">
+    <section className="py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Have questions? Need help? Want to share feedback? We'd love to hear from you!
-          </p>
-        </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">{t("contactTitle")}</h2>
+            <p className="text-xl text-muted-foreground">{t("contactSubtitle")}</p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* WhatsApp Contact */}
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-            <CardContent className="p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-green-100 rounded-full">
-                  <MessageCircle className="h-8 w-8 text-green-600" />
-                </div>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Send us a message</CardTitle>
+                <CardDescription>We'll get back to you as soon as possible.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-first-name">First Name</Label>
+                      <Input id="contact-first-name" placeholder="John" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-last-name">Last Name</Label>
+                      <Input id="contact-last-name" placeholder="Doe" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contact-email">Email</Label>
+                    <Input id="contact-email" type="email" placeholder="john@example.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contact-subject">Subject</Label>
+                    <Input id="contact-subject" placeholder="How can we help?" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contact-message">Message</Label>
+                    <Textarea
+                      id="contact-message"
+                      placeholder="Tell us more about your question or feedback..."
+                      rows={4}
+                    />
+                  </div>
+                  <Button type="submit" className="w-full">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Get in touch</h3>
+                <p className="text-muted-foreground mb-8">
+                  We're here to help with any questions about collecting, trading, or using our platform.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">WhatsApp Support</h3>
-              <p className="text-gray-600 mb-6">Get instant help from our support team via WhatsApp</p>
-              <a
-                href="https://wa.me/1234567890?text=Hello%20Colnect%20Support"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">Chat on WhatsApp</Button>
-              </a>
-            </CardContent>
-          </Card>
 
-          {/* Email Contact */}
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-            <CardContent className="p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-blue-100 rounded-full">
-                  <Mail className="h-8 w-8 text-blue-600" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Email Support</h3>
-              <p className="text-gray-600 mb-6">Send us an email and we'll get back to you within 24 hours</p>
-              <a href="mailto:support@colnect.com">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">Send Email</Button>
-              </a>
-            </CardContent>
-          </Card>
-
-          {/* Community Forum */}
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-            <CardContent className="p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-purple-100 rounded-full">
-                  <MessageCircle className="h-8 w-8 text-purple-600" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Community Forum</h3>
-              <p className="text-gray-600 mb-6">Join discussions with other collectors in our community forum</p>
-              <a href="https://forum.colnect.com" target="_blank" rel="noopener noreferrer">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">Visit Forum</Button>
-              </a>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Contact Information */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Office Information */}
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Office</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-blue-100 p-3 rounded-lg">
+                    <Mail className="h-6 w-6 text-blue-600" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Colnect Ltd.</p>
-                    <p className="text-gray-600">123 Collector's Street</p>
-                    <p className="text-gray-600">Tel Aviv, Israel 12345</p>
+                    <h4 className="font-semibold mb-1">Email Support</h4>
+                    <p className="text-muted-foreground">support@colnect.com</p>
+                    <p className="text-sm text-muted-foreground">We typically respond within 24 hours</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                  <p className="text-gray-600">+972-3-123-4567</p>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-lg">
+                    <MessageSquare className="h-6 w-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Community Forum</h4>
+                    <p className="text-muted-foreground">forum.colnect.com</p>
+                    <p className="text-sm text-muted-foreground">Get help from fellow collectors</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                  <p className="text-gray-600">info@colnect.com</p>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-purple-100 p-3 rounded-lg">
+                    <Phone className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Phone Support</h4>
+                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-sm text-muted-foreground">Mon-Fri, 9AM-5PM EST</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-orange-100 p-3 rounded-lg">
+                    <MapPin className="h-6 w-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Office</h4>
+                    <p className="text-muted-foreground">
+                      123 Collector's Lane
+                      <br />
+                      Suite 456
+                      <br />
+                      New York, NY 10001
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Social Media */}
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Follow Us</h3>
-              <p className="text-gray-600 mb-6">Stay updated with the latest news, tips, and community highlights</p>
-              <div className="flex justify-center md:justify-start gap-4">
-                {socialLinks.map((social) => {
-                  const IconComponent = social.icon
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-3 bg-gray-100 rounded-full text-gray-600 transition-colors ${social.color}`}
-                      aria-label={`Follow us on ${social.name}`}
-                    >
-                      <IconComponent className="h-6 w-6" />
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Business Hours */}
-        <div className="mt-12 text-center">
-          <div className="inline-block bg-blue-50 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Support Hours</h4>
-            <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM (GMT+2)</p>
-            <p className="text-gray-600">Weekend: Community forum support available 24/7</p>
           </div>
         </div>
       </div>

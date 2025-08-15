@@ -2,56 +2,58 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-const faqData = [
+const faqs = [
   {
-    question: "What is Colnect and how does it work?",
+    question: "What is Colnect?",
     answer:
-      "Colnect is the world's largest online community for collectors of stamps, coins, banknotes, and other collectibles. Our platform helps you catalog your collection, find items you need, and connect with collectors worldwide for trading and selling. With over 20 million items in our database and 400,000+ active users, we make collecting easier and more enjoyable.",
+      "Colnect is the world's largest collecting community platform where collectors can catalog their items, trade with others, and discover new collectibles. We support over 600 categories including stamps, coins, banknotes, postcards, and much more.",
   },
   {
-    question: "Is Colnect really free to use?",
+    question: "Is Colnect free to use?",
     answer:
-      "Yes! Colnect is completely free to use. You can create an account, manage your collection, search our catalogs, and connect with other collectors at no cost. We also offer premium memberships with additional features for serious collectors, but all core functionality remains free forever.",
+      "Yes! Colnect offers a comprehensive free plan that includes basic cataloging, trading features, and community access. We also offer premium plans with advanced features for serious collectors.",
   },
   {
-    question: "How does the auto-matching feature work?",
+    question: "How does trading work on Colnect?",
     answer:
-      "Our smart algorithm analyzes your collection and wishlist, then compares them with thousands of other collectors worldwide. When it finds someone who has items you want and wants items you have, it suggests a potential swap. You can then contact each other directly through our secure messaging system to arrange the trade.",
+      "Our trading system allows you to safely exchange items with collectors worldwide. You can browse want lists, make trade offers, and use our built-in messaging system. All trades are protected by our verification system and community feedback.",
   },
   {
     question: "What types of collectibles are supported?",
     answer:
-      "Colnect supports a wide range of collectibles including stamps, coins, banknotes, postcards, phone cards, bottle caps, trading cards, beer labels, wine labels, and many more categories. Our catalog is constantly expanding based on collector demand and community contributions.",
+      "Colnect supports over 600 categories of collectibles including stamps, coins, banknotes, postcards, phone cards, bottle caps, trading cards, and many more. If you collect it, chances are we support it!",
   },
   {
-    question: "Can I sell my collectibles on Colnect?",
+    question: "How accurate is the catalog information?",
     answer:
-      "Yes! While Colnect is primarily focused on trading/swapping, we also have a marketplace where you can list items for sale. You can set your own prices and reach collectors from over 250 countries. Our secure payment system handles transactions safely.",
+      "Our catalog is maintained by a community of expert collectors and is constantly updated. Each item includes detailed information, high-quality images, and market values. Our data is used by collectors, dealers, and auction houses worldwide.",
   },
   {
-    question: "How do I ensure safe trading with other collectors?",
+    question: "Can I access Colnect on mobile devices?",
     answer:
-      "Colnect has several safety features: user ratings and reviews, verified collector badges, secure messaging system, trading guidelines, and a dispute resolution process. We recommend starting with smaller trades to build trust, using tracked shipping, and clearly communicating about item conditions. Please note that Colnect facilitates connections but users are responsible for their own transactions.",
+      "Yes! Colnect is fully responsive and works great on all devices. We also offer dedicated mobile apps for iOS and Android with offline capabilities and camera integration for easy cataloging.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Simply sign up for a free account and start exploring! You can begin by searching for items in your collection, joining relevant collecting groups, or browsing our extensive catalog to discover new items.",
+  },
+  {
+    question: "Is my personal information safe?",
+    answer:
+      "Absolutely. We take privacy and security seriously. Your personal information is encrypted and protected, and we never share your data with third parties without your consent. You control what information is visible to other collectors.",
   },
 ]
 
-export default function FAQAccordion() {
+export function FAQAccordion() {
   return (
-    <div className="max-w-4xl mx-auto">
-      <Accordion type="single" collapsible className="space-y-4">
-        {faqData.map((faq, index) => (
-          <AccordionItem
-            key={index}
-            value={`item-${index}`}
-            className="border border-gray-200 rounded-lg px-6 bg-gray-50"
-          >
-            <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-blue-600 py-4">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-gray-600 pb-4 leading-relaxed">{faq.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+    <Accordion type="single" collapsible className="w-full">
+      {faqs.map((faq, index) => (
+        <AccordionItem key={index} value={`item-${index}`}>
+          <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+          <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   )
 }

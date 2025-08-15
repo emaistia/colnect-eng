@@ -1,46 +1,63 @@
 "use client"
-
-import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ArrowRight, Mail, CheckCircle } from "lucide-react"
+import { ArrowRight, Mail, CheckCircle, Loader2 } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
+import { subscribeToMailchimp } from "@/app/actions/mailchimp"
 
-export default function EmailSignupForm() {
+interface EmailSignupFormProps {
+  campaign?: string
+  source?: string
+  medium?: string
+  placeholder?: string
+  buttonText?: string
+  className?: string
+}
+
+export default function EmailSignupForm({
+  campaign = "newsletter",
+  source = "website",
+  medium = "form",
+  placeholder = "Enter your email address",
+  buttonText = "Subscribe",
+  className = "",
+}: EmailSignupFormProps) {
   const [email, setEmail] = useState("")
   const [agreeToTerms, setAgreeToTerms] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { toast } = useToast()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  async function handleSubmit(formData: FormData) {
+    setIsLoading(true)
 
-    if (!agreeToTerms) {
-      toast({
-        title: "Terms Required",
-        description: "Please agree to the terms and conditions to continue.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    setIsSubmitting(true)
+    // Add UTM parameters to form data
+    formData.append("utm_campaign", campaign)
+    formData.append("utm_source", source)
+    formData.append("utm_medium", medium)
 
     try {
-      // Here you would typically call your API endpoint
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const result = await subscribeToMailchimp(formData)
 
-      setIsSubmitted(true)
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list. Check your email for confirmation.",
-      })
+      if (result.success) {
+        toast({
+          title: "Successfully subscribed!",
+          description: result.message,
+        })
+        // Reset form
+        const form = document.getElementById("email-signup-form") as HTMLFormElement
+        form?.reset()
+        setIsSubmitted(true)
+      } else {
+        toast({
+          title: "Subscription failed",
+          description: result.error,
+          variant: "destructive",
+        })
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -48,7 +65,7 @@ export default function EmailSignupForm() {
         variant: "destructive",
       })
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false)
     }
   }
 
@@ -66,15 +83,25 @@ export default function EmailSignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+    <form
+      id="email-signup-form"
+      onSubmit={(e) => {
+        e.preventDefault()
+        const form = e.currentTarget
+        const formData = new FormData(form)
+        handleSubmit(formData)
+      }}
+      className={`space-y-4 max-w-md mx-auto ${className}`}
+    >
       <div className="space-y-2">
         <Label htmlFor="email-signup">Email Address</Label>
         <div className="relative">
           <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
             id="email-signup"
+            name="email"
             type="email"
-            placeholder="Enter your email address"
+            placeholder={placeholder}
             className="pl-10"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -105,11 +132,20 @@ export default function EmailSignupForm() {
 
       <Button
         type="submit"
+        disabled={isLoading || !agreeToTerms}
         className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-        size="lg"
-        disabled={isSubmitting}
       >
-        {isSubmitting ? "Signing Up..." : "Get Free Guide"}
+        {isLoading ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Subscribing...
+          </>
+        ) : (
+          <>
+            <Mail className="mr-2 h-4 w-4" />
+            {buttonText}
+          </>
+        )}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
 
