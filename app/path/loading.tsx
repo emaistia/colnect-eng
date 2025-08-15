@@ -71,6 +71,83 @@ export default function Loading() {
             </div>
           </div>
         </section>
+
+        {/* User Journey Section Skeleton */}
+        <section className="w-full py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="w-72 h-8 bg-gray-200 rounded animate-pulse mx-auto mb-4"></div>
+              <div className="w-full max-w-4xl h-6 bg-gray-200 rounded animate-pulse mx-auto"></div>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-white rounded-lg shadow-lg p-8">
+                  <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse mb-4"></div>
+                  <div className="w-32 h-6 bg-gray-200 rounded animate-pulse mb-3"></div>
+                  <div className="w-full h-20 bg-gray-200 rounded animate-pulse mb-6"></div>
+                  <div className="w-full h-10 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section Skeleton */}
+        <section className="w-full py-16 md:py-24 bg-blue-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="w-80 h-8 bg-gray-200 rounded animate-pulse mx-auto mb-4"></div>
+              <div className="w-96 h-4 bg-gray-200 rounded animate-pulse mx-auto"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-white rounded-lg shadow-lg p-8">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, j) => (
+                      <div key={j} className="w-5 h-5 bg-gray-200 rounded animate-pulse"></div>
+                    ))}
+                  </div>
+                  <div className="w-full h-24 bg-gray-200 rounded animate-pulse mb-6"></div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse"></div>
+                    <div>
+                      <div className="w-24 h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                      <div className="w-32 h-3 bg-gray-200 rounded animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section Skeleton */}
+        <section className="w-full py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="w-80 h-8 bg-gray-200 rounded animate-pulse mx-auto mb-4"></div>
+              <div className="w-96 h-4 bg-gray-200 rounded animate-pulse mx-auto"></div>
+            </div>
+            <div className="max-w-4xl mx-auto space-y-4">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="border border-gray-200 rounded-lg px-6 bg-gray-50">
+                  <div className="w-full h-12 bg-gray-200 rounded animate-pulse my-4"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section Skeleton */}
+        <section className="w-full py-16 md:py-24 bg-blue-600">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <div className="w-96 h-8 bg-blue-400 rounded animate-pulse mx-auto mb-4"></div>
+              <div className="w-full max-w-2xl h-4 bg-blue-400 rounded animate-pulse mx-auto"></div>
+            </div>
+            <div className="w-64 h-12 bg-white rounded animate-pulse mx-auto"></div>
+          </div>
+        </section>
       </main>
     </div>
   )

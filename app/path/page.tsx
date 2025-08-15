@@ -263,14 +263,14 @@ export default function PathPage() {
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
                   <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium print:bg-gray-100 print:text-gray-800">
-                    🌟 Trusted by 400,000+ Collectors Worldwide
+                    🌟 Trusted by 412.124+ Collectors Worldwide
                   </div>
                   <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight print:text-3xl">
                     Collect Smarter,
                     <span className="text-blue-600 print:text-gray-800"> Connect Faster</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-600 leading-relaxed print:text-lg">
-                    Manage your collection and find ideal swap partners, all from one place. Colnect offers a
+                    Manage your collection and find ideal swap partners — all from one place. Colnect offers a
                     comprehensive catalog, automatic matching, and picture search for collectors of stamps, coins,
                     banknotes, and more.
                   </p>
@@ -327,7 +327,7 @@ export default function PathPage() {
           </div>
         </section>
 
-        {/* Trust Indicators */}
+        {/* Trust Indicators - Version B with precise numbers */}
         <section className="w-full py-12 bg-white border-b print:py-6 print:border-gray-300">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center print:gap-4">
@@ -342,15 +342,15 @@ export default function PathPage() {
                 <div className="text-gray-600 print:text-sm">Catalog Items</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">250+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">253+</div>
                 <div className="text-gray-600 print:text-sm">Countries</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">53+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">63+</div>
                 <div className="text-gray-600 print:text-sm">Languages</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">47</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">47+</div>
                 <div className="text-gray-600 print:text-sm">Collection Categories</div>
               </div>
             </div>
@@ -927,63 +927,109 @@ export default function PathPage() {
           </div>
         </section>
 
-        {/* Final CTA Section with Integrated Bonuses - Reduced Size */}
-        <section className="w-full py-8 md:py-12 bg-blue-600 text-white print:hidden">
+        {/* Final CTA Section with Expanded Bonuses - Version B */}
+        <section className="w-full py-12 md:py-16 bg-blue-600 text-white print:hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Collect Smarter and Connect Faster?</h2>
-              <p className="text-lg text-blue-100 mb-4 max-w-2xl mx-auto">
-                Start your collecting journey today — it's completely free, and packed with tools to grow your
-                collection with confidence.
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Collect Smarter and Connect Faster?</h2>
+              <p className="text-lg text-blue-100 mb-6 max-w-2xl mx-auto">
+                Start your collecting journey today. It's completely free, and packed with tools to grow your collection
+                with confidence.
               </p>
             </div>
 
-            {/* Integrated Bonus Section */}
-            <div className="max-w-3xl mx-auto mb-4">
-              <div className="text-center mb-2">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Bonus for New Members:</h3>
+            {/* Expanded Bonus Section - Version B */}
+            <div className="max-w-4xl mx-auto mb-8">
+              <div className="text-center mb-6">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">Bonus for New Members:</h3>
               </div>
 
-              <div className="space-y-2 mb-4">
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
                 {/* Quick-start Guide Bonus */}
-                <div className="flex items-start gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <div className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                   <div className="flex-shrink-0">
-                    <div className="text-xl">📘</div>
+                    <div className="text-3xl">📘</div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-bold text-white mb-1">
+                    <h4 className="text-lg font-bold text-white mb-2">
                       Quick-start Guide: "5 Mistakes New Collectors Make"
                     </h4>
-                    <p className="text-xs text-blue-100">
+                    <p className="text-sm text-blue-100 mb-3">
                       Essential tips to avoid common pitfalls and start your collection right.
                     </p>
+                    <ul className="text-xs text-blue-200 space-y-1">
+                      <li>• How to properly store and preserve your items</li>
+                      <li>• Identifying authentic vs. reproduction items</li>
+                      <li>• Setting realistic collecting goals and budgets</li>
+                    </ul>
                   </div>
                 </div>
 
                 {/* Pro Tips Email Series */}
-                <div className="flex items-start gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <div className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                   <div className="flex-shrink-0">
-                    <div className="text-xl">📬</div>
+                    <div className="text-3xl">📬</div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-bold text-white mb-1">Pro Tips Email Series</h4>
-                    <p className="text-xs text-blue-100">
+                    <h4 className="text-lg font-bold text-white mb-2">Pro Tips Email Series</h4>
+                    <p className="text-sm text-blue-100 mb-3">
                       Exclusive insights from seasoned collectors delivered to your inbox.
                     </p>
+                    <ul className="text-xs text-blue-200 space-y-1">
+                      <li>• Weekly collecting strategies and market insights</li>
+                      <li>• Advanced trading techniques and negotiation tips</li>
+                      <li>• Exclusive access to rare item alerts</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Community Access Bonus */}
+                <div className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                  <div className="flex-shrink-0">
+                    <div className="text-3xl">🎯</div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-white mb-2">VIP Community Access</h4>
+                    <p className="text-sm text-blue-100 mb-3">
+                      Join our exclusive new member community for personalized guidance.
+                    </p>
+                    <ul className="text-xs text-blue-200 space-y-1">
+                      <li>• Direct access to collecting mentors</li>
+                      <li>• Priority support for your first 30 days</li>
+                      <li>• Exclusive new member trading events</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Catalog Mastery Bonus */}
+                <div className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                  <div className="flex-shrink-0">
+                    <div className="text-3xl">🔍</div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-white mb-2">Catalog Mastery Workshop</h4>
+                    <p className="text-sm text-blue-100 mb-3">
+                      Learn to navigate our 21M+ item catalog like a pro collector.
+                    </p>
+                    <ul className="text-xs text-blue-200 space-y-1">
+                      <li>• Advanced search techniques and filters</li>
+                      <li>• How to spot undervalued items</li>
+                      <li>• Using image recognition for instant identification</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* CTA Button - Made Bigger */}
-            <div className="text-center mb-4">
+            {/* CTA Button */}
+            <div className="text-center mb-6">
               <a
-                href={`${ctaUrl}&utm_content=final_cta_with_bonuses&ref=path_lp`}
+                href={`${ctaUrl}&utm_content=final_cta_with_expanded_bonuses&ref=path_lp`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-xl px-12 py-6">
-                  👉 Start Free – Get Your Bonus Now
+                  👉 Start Free – Get All Bonuses Now
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               </a>
@@ -991,25 +1037,25 @@ export default function PathPage() {
 
             {/* Benefits and Happy Colnecting */}
             <div className="text-center">
-              <div className="text-blue-200 text-sm mb-1">
-                ✓ No credit card required ✓ Instant access ✓ Join 400,000+ collectors
+              <div className="text-blue-200 text-sm mb-2">
+                ✓ No credit card required ✓ Instant access ✓ Join 412.124+ collectors
               </div>
               <div className="text-blue-100 text-lg font-medium">Happy Colnecting 🥳</div>
             </div>
 
             {/* Footer content integrated into CTA section */}
-            <div className="text-center mt-6 pt-4 border-t border-blue-700 print:hidden">
+            <div className="text-center mt-8 pt-4 border-t border-blue-700 print:hidden">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Image
                   src="/images/colnect-logo.png"
                   alt="Colnect Logo"
-                  width={70} // Smaller logo size
-                  height={21}
+                  width={80}
+                  height={24}
                   className="h-auto brightness-0 invert"
                 />
               </div>
               <p className="text-blue-100 text-sm mb-2 max-w-md mx-auto">
-                Comprehensive catalog, automatic matching, and personal collection feature for collectors worldwide.
+                Comprehensive catalog, automatic matching, and picture search for collectors worldwide.
               </p>
               <p className="text-blue-200 text-xs">
                 © {new Date().getFullYear()} Colnect Ltd. All rights reserved. Made with ❤️ for collectors worldwide.
