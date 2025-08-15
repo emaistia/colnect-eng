@@ -2,113 +2,83 @@
 
 import { z } from "zod"
 
-// Form validation schema
-const SignupSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  consent: z.boolean().refine((val) => val === true, {
-    message: "You must agree to receive updates",
-  }),
+const emailSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
 })
 
-type SignupFormData = z.infer<typeof SignupSchema>
-
 export async function subscribeToMailchimp(formData: FormData) {
-  // Validate form data
-  const validatedFields = SignupSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    consent: formData.get("consent") === "on",
-  })
-
-  if (!validatedFields.success) {
-    return {
-      success: false,
-      message: "Please check your information and try again.",
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
-
-  const { name, email } = validatedFields.data
-
   try {
-    // Get Mailchimp credentials from environment variables
-    const apiKey = process.env.MAILCHIMP_API_KEY
-    const server = process.env.MAILCHIMP_SERVER // e.g., "us1"
-    const listId = process.env.MAILCHIMP_LIST_ID
+    const email = formData.get("email") as string
+    const firstName = formData.get("firstName") as string
+    const lastName = formData.get("lastName") as string
 
-    if (!apiKey || !server || !listId) {
-      console.error("Mailchimp credentials not configured:", {
-        hasApiKey: !!apiKey,
-        hasServer: !!server,
-        hasListId: !!listId,
-      })
-      return {
-        success: false,
-        message: "Email service not configured. Please contact the administrator.",
-      }
-    }
-
-    // Split name into first and last name
-    const nameParts = name.split(" ")
-    const firstName = nameParts[0]
-    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : ""
-
-    // Prepare data for Mailchimp
-    const data = {
-      email_address: email,
-      status: "subscribed",
-      merge_fields: {
-        FNAME: firstName,
-        LNAME: lastName,
-      },
-    }
-
-    console.log("Attempting to subscribe with:", {
-      server,
-      listId,
+    // Validate the input
+    const validatedData = emailSchema.parse({
       email,
-      hasApiKey: !!apiKey,
+      firstName,
+      lastName,
     })
 
-    // Make API request to Mailchimp
-    const response = await fetch(`https://${server}.api.mailchimp.com/3.0/lists/${listId}/members`, {
+    const API_KEY = process.env.MAILCHIMP_API_KEY
+    const SERVER_PREFIX = process.env.MAILCHIMP_SERVER
+    const LIST_ID = process.env.MAILCHIMP_LIST_ID
+
+    if (!API_KEY || !SERVER_PREFIX || !LIST_ID) {
+      throw new Error("Mailchimp configuration is missing")
+    }
+
+    const url = `https://${SERVER_PREFIX}.api.mailchimp.com/3.0/lists/${LIST_ID}/members`
+
+    const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`,
+        Authorization: `Basic ${Buffer.from(`anystring:${API_KEY}`).toString("base64")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        email_address: validatedData.email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: validatedData.firstName || "",
+          LNAME: validatedData.lastName || "",
+        },
+        tags: ["colnect-landing-page"],
+      }),
     })
 
-    const responseData = await response.json()
-    console.log("Mailchimp response:", {
-      status: response.status,
-      statusText: response.statusText,
-      data: responseData,
-    })
-
-    // Handle already subscribed users
-    if (response.status === 400 && responseData.title === "Member Exists") {
-      return {
-        success: true,
-        message: "You're already subscribed! We'll keep you updated with the latest news.",
-      }
-    }
+    const data = await response.json()
 
     if (!response.ok) {
-      throw new Error(responseData.detail || "Failed to subscribe")
+      // Handle specific Mailchimp errors
+      if (data.title === "Member Exists") {
+        return {
+          success: false,
+          error: "This email is already subscribed to our newsletter.",
+        }
+      }
+
+      throw new Error(data.detail || "Failed to subscribe to newsletter")
     }
 
     return {
       success: true,
-      message: "Thanks for subscribing! Check your email for a confirmation.",
+      message: "Successfully subscribed to newsletter!",
     }
   } catch (error) {
     console.error("Mailchimp subscription error:", error)
+
+    if (error instanceof z.ZodError) {
+      return {
+        success: false,
+        error: "Invalid email address provided.",
+      }
+    }
+
     return {
       success: false,
-      message: "There was a problem subscribing you. Please try again later.",
+      error: error instanceof Error ? error.message : "An unexpected error occurred",
     }
   }
 }

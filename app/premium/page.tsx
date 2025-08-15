@@ -1,316 +1,403 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Check, ArrowLeft, Star } from "lucide-react"
-import LanguageSelector from "../components/language-selector"
+import { CheckCircle, ArrowRight, Star, Crown, Zap, Shield } from "lucide-react"
 
 export default function PremiumPage() {
+  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">("yearly")
+
+  const baseUtm = "utm_source=premium_page&utm_medium=website&utm_campaign=colnect_premium"
+
+  const plans = {
+    monthly: {
+      price: "$9.99",
+      period: "month",
+      savings: null,
+      ctaUrl: `https://colnect.com/premium/monthly?${baseUtm}&utm_content=monthly_plan`,
+    },
+    yearly: {
+      price: "$99.99",
+      period: "year",
+      savings: "Save 17%",
+      ctaUrl: `https://colnect.com/premium/yearly?${baseUtm}&utm_content=yearly_plan`,
+    },
+  }
+
+  const currentPlan = plans[selectedPlan]
+
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-40 w-full border-b bg-white shadow-sm">
-        <div className="container flex h-16 items-center justify-between">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Navigation Bar */}
+      <header className="w-full border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <Link href="/">
-              <div className="w-[120px] h-[40px] relative">
-                <Image src="/images/colnect-logo.png" alt="Colnect Logo" fill className="object-contain" />
-              </div>
-            </Link>
+            <Image
+              src="/images/colnect-logo.png"
+              alt="Colnect - Collectors Community Platform"
+              width={120}
+              height={40}
+              className="h-auto"
+            />
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/#benefits" className="text-sm font-medium text-purple-900 hover:text-purple-500">
-              Benefits
-            </Link>
-            <Link href="/#testimonials" className="text-sm font-medium text-purple-900 hover:text-purple-500">
-              Testimonials
-            </Link>
-            <Link href="/#faq" className="text-sm font-medium text-purple-900 hover:text-purple-500">
-              FAQ
-            </Link>
-            <Link href="/#bonus" className="text-sm font-medium text-purple-900 hover:text-purple-500">
-              Bonus
-            </Link>
-            <Link href="/premium" className="text-sm font-medium text-purple-900 hover:text-purple-500">
-              Premium
-            </Link>
-            <LanguageSelector />
-          </nav>
-          <div className="flex items-center gap-2">
-            <LanguageSelector className="md:hidden" />
-            <Link href="/">
-              <Button className="bg-purple-500 hover:bg-purple-600 text-white">Sign Up Free</Button>
-            </Link>
+          <div className="flex items-center gap-4">
+            <a href="/" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+              Back to Home
+            </a>
+            <a
+              href={`https://colnect.com/login?${baseUtm}&utm_content=header_login`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="sm">
+                Login
+              </Button>
+            </a>
           </div>
         </div>
       </header>
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-purple-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-8">
-              <Link href="/" className="flex items-center text-purple-600 hover:text-purple-700 mb-2">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
-              </Link>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">
-                Enhance Your Collecting Experience
-              </h1>
-              <p className="max-w-[700px] text-gray-600 md:text-xl">
-                Upgrade to Premium for advanced features that help serious collectors get the most out of Colnect
-              </p>
+        <section className="w-full py-16 md:py-24">
+          <div className="container mx-auto px-4 text-center">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Crown className="h-4 w-4" />
+              Premium Membership
             </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-              {/* Monthly Plan */}
-              <Card className="border-none shadow-lg">
-                <CardContent className="p-6">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900">Monthly</h3>
-                    <div className="mt-2 flex items-baseline justify-center">
-                      <span className="text-3xl font-bold text-purple-900">€11.88</span>
-                      <span className="text-gray-600 ml-1">/ month</span>
-                    </div>
-                  </div>
-                  <Button className="w-full mb-6 bg-purple-500 hover:bg-purple-600 text-white">Get Monthly</Button>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">Cancel anytime</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">All premium features</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">Monthly billing</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              Unlock the Full Power of
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                {" "}
+                Colnect
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+              Take your collecting to the next level with advanced features, priority support, and exclusive access to
+              premium tools designed for serious collectors.
+            </p>
 
-              {/* Annual Plan */}
-              <Card className="border-none shadow-lg relative lg:scale-110 z-10 bg-white">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-purple-500 rounded-t-lg"></div>
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-900 text-white px-4 py-1 rounded-full text-sm font-medium">
-                  Best Value!
+            {/* Plan Toggle */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className={`text-sm ${selectedPlan === "monthly" ? "text-gray-900 font-medium" : "text-gray-500"}`}>
+                Monthly
+              </span>
+              <button
+                onClick={() => setSelectedPlan(selectedPlan === "monthly" ? "yearly" : "monthly")}
+                className="relative inline-flex h-6 w-11 items-center rounded-full bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    selectedPlan === "yearly" ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <span className={`text-sm ${selectedPlan === "yearly" ? "text-gray-900 font-medium" : "text-gray-500"}`}>
+                Yearly
+              </span>
+              {selectedPlan === "yearly" && (
+                <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">Save 17%</span>
+              )}
+            </div>
+
+            {/* Pricing Card */}
+            <Card className="max-w-md mx-auto border-2 border-blue-200 shadow-xl">
+              <CardContent className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                    {currentPlan.price}
+                    <span className="text-lg font-normal text-gray-600">/{currentPlan.period}</span>
+                  </div>
+                  {currentPlan.savings && <div className="text-green-600 font-medium">{currentPlan.savings}</div>}
                 </div>
-                <CardContent className="p-8">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900">Annual</h3>
-                    <div className="mt-2 flex items-baseline justify-center">
-                      <span className="text-4xl font-bold text-purple-900">€8.33</span>
-                      <span className="text-gray-600 ml-1">/ month</span>
-                    </div>
-                    <p className="text-green-600 font-medium mt-1">30% discount</p>
-                    <p className="text-gray-600 text-sm mt-1">€99.88 charged annually</p>
-                  </div>
-                  <Button className="w-full mb-6 bg-purple-500 hover:bg-purple-600 text-white">Get Annual</Button>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">Best price guarantee</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">All premium features</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">Annual billing</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
 
-              {/* Multi-Year Plan */}
-              <Card className="border-none shadow-lg">
-                <CardContent className="p-6">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900">3-Year</h3>
-                    <div className="mt-2 flex items-baseline justify-center">
-                      <span className="text-3xl font-bold text-purple-900">€7.66</span>
-                      <span className="text-gray-600 ml-1">/ month</span>
-                    </div>
-                    <p className="text-green-600 font-medium mt-1">8% additional discount</p>
-                  </div>
-                  <Button className="w-full mb-6 bg-purple-500 hover:bg-purple-600 text-white">Get 3-Year</Button>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">Maximum savings</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">All premium features</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">One-time payment</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+                <a href={currentPlan.ctaUrl} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-8 py-4 mb-6"
+                  >
+                    Upgrade to Premium
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
+
+                <p className="text-sm text-gray-600">30-day money-back guarantee • Cancel anytime</p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl text-gray-900">
-                Premium Membership Benefits
-              </h2>
-              <p className="max-w-[700px] text-gray-600 md:text-lg">
-                Enhance your collecting experience with these powerful features
+        <section className="w-full py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Premium Features</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Everything in the free plan, plus advanced tools and priority support
               </p>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Unlimited Best Matches</h3>
-                <p className="text-gray-600">Find your most suitable swap partners on Colnect.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Unlimited Auto-Matching</h3>
-                <p className="text-gray-600">Match your wish list with a collector's swap list with one click.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Extended Custom Personal Lists</h3>
-                <p className="text-gray-600">Create custom personal lists to suit your needs.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Quick Mark</h3>
-                <p className="text-gray-600">Add/remove multiple items to your lists with one click.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Extended Export List</h3>
-                <p className="text-gray-600">Export any list for offline use at up to 10,000 items at a time.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Private Item Notes</h3>
-                <p className="text-gray-600">Add notes to your lists that only you can view.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Members Highlighting</h3>
-                <p className="text-gray-600">Highlight your profile on collectors lists and your personal page.</p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Top Collectors List</h3>
-                <p className="text-gray-600">
-                  See who offers for trade most of collectibles of a specific country or theme.
-                </p>
-              </div>
-              <div className="flex flex-col items-start p-6 bg-purple-50 rounded-lg">
-                <div className="p-3 bg-purple-100 rounded-full mb-4">
-                  <Check className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Remove Ads</h3>
-                <p className="text-gray-600">Browse Colnect completely ad free.</p>
-              </div>
+              {/* Advanced Analytics */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <Zap className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Advanced Analytics</h3>
+                  <p className="text-gray-600 mb-4">
+                    Get detailed insights into your collection value, growth trends, and market analysis with premium
+                    analytics dashboard.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Collection value tracking
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Market trend analysis
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Investment performance reports
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Priority Matching */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <Star className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Priority Matching</h3>
+                  <p className="text-gray-600 mb-4">
+                    Get first access to new matches and priority placement in swap recommendations to find rare items
+                    faster.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      First access to matches
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Priority in recommendations
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Advanced filtering options
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Premium Support */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <Shield className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Premium Support</h3>
+                  <p className="text-gray-600 mb-4">
+                    Get priority customer support with faster response times and direct access to our collecting
+                    experts.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Priority support queue
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Expert collecting advice
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Phone support available
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Unlimited Storage */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <CheckCircle className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Unlimited Storage</h3>
+                  <p className="text-gray-600 mb-4">
+                    Store unlimited high-resolution images of your collection with no restrictions on file size or
+                    quantity.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Unlimited image uploads
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      High-resolution storage
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Backup & sync across devices
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Advanced Search */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <Star className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Advanced Search</h3>
+                  <p className="text-gray-600 mb-4">
+                    Use powerful search filters and saved searches to find exactly what you're looking for in our vast
+                    catalog.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Advanced filter options
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Saved search alerts
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Bulk operations
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Exclusive Access */}
+              <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
+                      <Crown className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Exclusive Access</h3>
+                  <p className="text-gray-600 mb-4">
+                    Get early access to new features, exclusive events, and special collecting opportunities available
+                    only to premium members.
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Beta feature access
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Exclusive collecting events
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      Premium member community
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="w-full py-12 md:py-24 bg-purple-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl text-gray-900">
-                What Premium Members Say
-              </h2>
-              <p className="max-w-[700px] text-gray-600 md:text-lg">
-                Hear from collectors who have enhanced their experience with Premium
+        {/* Testimonials */}
+        <section className="w-full py-16 md:py-24 bg-gradient-to-br from-blue-50 to-purple-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Premium Members Say</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Join thousands of collectors who have upgraded their collecting experience
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6 flex flex-col space-y-4">
-                  <div className="flex items-center gap-1">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 fill-current text-yellow-500" />
                     ))}
                   </div>
-                  <p className="text-gray-600 italic">
-                    "The unlimited auto-matching feature alone is worth the premium subscription. I've found so many
-                    more swap partners and completed my collection much faster than I expected."
-                  </p>
+                  <blockquote className="text-gray-700 mb-6 italic">
+                    "The premium analytics helped me identify undervalued items in my collection. I've made better
+                    trading decisions and my collection value has increased by 40% this year!"
+                  </blockquote>
                   <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-purple-100 p-1 h-12 w-12 flex items-center justify-center">
-                      <span className="text-purple-600 font-bold text-lg">M</span>
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                      <span className="text-blue-600 font-bold text-lg">R</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Marco</p>
-                      <p className="text-sm text-gray-500">Italy</p>
+                      <div className="font-semibold text-gray-900">Robert Chen</div>
+                      <div className="text-gray-600 text-sm">Coin Collector, Premium Member</div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6 flex flex-col space-y-4">
-                  <div className="flex items-center gap-1">
+
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 fill-current text-yellow-500" />
                     ))}
                   </div>
-                  <p className="text-gray-600 italic">
-                    "Being able to export my entire collection and having private notes for each item has made managing
-                    my rare coin collection so much easier. Premium is definitely worth it for serious collectors."
-                  </p>
+                  <blockquote className="text-gray-700 mb-6 italic">
+                    "Priority matching is a game-changer! I found three rare stamps I'd been searching for years within
+                    my first month of premium membership. Absolutely worth every penny."
+                  </blockquote>
                   <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-purple-100 p-1 h-12 w-12 flex items-center justify-center">
-                      <span className="text-purple-600 font-bold text-lg">S</span>
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                      <span className="text-blue-600 font-bold text-lg">S</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Sarah</p>
-                      <p className="text-sm text-gray-500">United States</p>
+                      <div className="font-semibold text-gray-900">Sarah Mitchell</div>
+                      <div className="text-gray-600 text-sm">Stamp Collector, Premium Member</div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6 flex flex-col space-y-4">
-                  <div className="flex items-center gap-1">
+
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 fill-current text-yellow-500" />
                     ))}
                   </div>
-                  <p className="text-gray-600 italic">
-                    "I've been a Premium member for 3 years now. The ad-free experience and premium highlighting have
-                    made my collecting journey much more enjoyable. I've connected with top collectors worldwide."
-                  </p>
+                  <blockquote className="text-gray-700 mb-6 italic">
+                    "The premium support team helped me authenticate a rare banknote and connected me with an expert
+                    appraiser. Their knowledge and quick response time saved me from a costly mistake."
+                  </blockquote>
                   <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-purple-100 p-1 h-12 w-12 flex items-center justify-center">
-                      <span className="text-purple-600 font-bold text-lg">J</span>
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                      <span className="text-blue-600 font-bold text-lg">M</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Johan</p>
-                      <p className="text-sm text-gray-500">Sweden</p>
+                      <div className="font-semibold text-gray-900">Michael Torres</div>
+                      <div className="text-gray-600 text-sm">Banknote Collector, Premium Member</div>
                     </div>
                   </div>
                 </CardContent>
@@ -319,98 +406,54 @@ export default function PremiumPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl text-gray-900">
-                Frequently Asked Questions About Premium
-              </h2>
-              <p className="max-w-[700px] text-gray-600 md:text-lg">
-                Everything you need to know about Colnect Premium membership
-              </p>
-            </div>
-            <div className="max-w-3xl mx-auto space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-gray-900">Do I need Premium to use Colnect?</h3>
-                <p className="text-gray-600">
-                  No, Colnect is completely free to use! All core features are available to free users, including
-                  managing your collection, finding swap partners, and communicating with other collectors. Premium is
-                  an optional upgrade for collectors who want enhanced features.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-gray-900">Can I cancel my Premium subscription?</h3>
-                <p className="text-gray-600">
-                  Yes, you can cancel your Premium subscription at any time. We respect our community members and make
-                  it easy to cancel. Your Premium benefits will continue until the end of your billing period.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-gray-900">Is there a free trial for Premium?</h3>
-                <p className="text-gray-600">
-                  We occasionally offer free trial periods for new users. Check our promotions or contact our support
-                  team to inquire about current trial offers.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-gray-900">What payment methods do you accept?</h3>
-                <p className="text-gray-600">
-                  We accept major credit cards, PayPal, and various other payment methods including Crypto, IBAN, ACH,
-                  Zelle, and Wise. For longer subscriptions (3-5 years), we offer additional discounts.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Final CTA */}
+        <section className="w-full py-16 md:py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Upgrade Your Collecting Experience?</h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Join thousands of collectors who have taken their hobby to the next level with Colnect Premium.
+            </p>
 
-        {/* Final CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-purple-900 text-white">
-          <div className="container px-4 md:px-6 text-center">
-            <div className="max-w-2xl mx-auto space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Ready to Enhance Your Experience?</h2>
-              <p className="text-purple-100 md:text-lg">
-                Upgrade to Premium today and take your collecting to the next level.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50">
-                  Get Premium Now
-                </Button>
-                <Link href="/">
-                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-purple-800">
-                    Try Free Version First
-                  </Button>
-                </Link>
-              </div>
+            <div className="max-w-md mx-auto mb-8">
+              <Card className="border-2 border-white/20 bg-white/10 backdrop-blur-sm">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold mb-2">
+                    {currentPlan.price}
+                    <span className="text-lg font-normal">/{currentPlan.period}</span>
+                  </div>
+                  {currentPlan.savings && <div className="text-green-300 font-medium mb-4">{currentPlan.savings}</div>}
+
+                  <a href={currentPlan.ctaUrl} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="w-full bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4 mb-4">
+                      Start Premium Today
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </a>
+
+                  <p className="text-sm text-blue-200">30-day money-back guarantee</p>
+                </CardContent>
+              </Card>
             </div>
+
+            <div className="text-blue-200 text-sm">✓ Cancel anytime ✓ No setup fees ✓ Instant activation</div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-6 bg-gray-50 border-t">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center gap-4 text-center">
-            <div className="w-[100px] h-[30px] relative">
-              <Image src="/images/colnect-logo.png" alt="Colnect Logo" fill className="object-contain" />
-            </div>
-            <p className="text-sm text-gray-500">We respect your privacy. Unsubscribe anytime.</p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-gray-500 hover:text-purple-600">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-500 hover:text-purple-600">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-500 hover:text-purple-600">
-                Contact Us
-              </a>
-              <Link href="/" className="text-gray-500 hover:text-purple-600">
-                Home
-              </Link>
-            </div>
-            <p className="text-xs text-gray-400">© {new Date().getFullYear()} Colnect. All rights reserved.</p>
+      <footer className="w-full py-8 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Image
+              src="/images/colnect-logo.png"
+              alt="Colnect Logo"
+              width={80}
+              height={24}
+              className="h-auto brightness-0 invert"
+            />
           </div>
+          <p className="text-gray-400 text-sm mb-2">Premium features for serious collectors worldwide.</p>
+          <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Colnect Ltd. All rights reserved.</p>
         </div>
       </footer>
     </div>

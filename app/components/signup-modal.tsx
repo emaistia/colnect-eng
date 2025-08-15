@@ -3,148 +3,178 @@
 import type React from "react"
 
 import { useState } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
-import Image from "next/image"
+import { ArrowRight, Mail, User, Lock } from "lucide-react"
 
-export default function SignupModal({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false)
+interface SignupModalProps {
+  isOpen: boolean
+  onClose: () => void
+  userType?: "collector" | "seller" | "explorer" | null
+}
+
+export default function SignupModal({ isOpen, onClose, userType }: SignupModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    language: "en",
-    consent: false,
+    agreeToTerms: false,
+    subscribeNewsletter: true,
   })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData((prev) => ({ ...prev, consent: checked }))
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Here you would typically send the data to your backend
-    setOpen(false)
+    // Here you would typically handle the form submission
+    console.log("Form submitted:", formData, "User type:", userType)
+    // Redirect to Colnect signup with user type
+    const signupUrl = `https://colnect.com/aff/_emLP/en/account/create?utm_source=landing_page&utm_medium=website&utm_campaign=colnect_promo&utm_content=${userType}_signup_modal&ref=ebook_lp`
+    window.open(signupUrl, "_blank")
+    onClose()
+  }
+
+  const getUserTypeTitle = () => {
+    switch (userType) {
+      case "collector":
+        return "Start Your Collecting Journey"
+      case "seller":
+        return "Begin Selling Your Items"
+      case "explorer":
+        return "Start Exploring Collections"
+      default:
+        return "Join Colnect Today"
+    }
+  }
+
+  const getUserTypeDescription = () => {
+    switch (userType) {
+      case "collector":
+        return "Set up your collection and start finding perfect matches with collectors worldwide."
+      case "seller":
+        return "List your items and connect with buyers who are actively searching for what you have."
+      case "explorer":
+        return "Discover millions of collectibles and learn from our global community."
+      default:
+        return "Join the world's largest community of collectors."
+    }
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <div className="flex justify-center mb-4">
-            <div className="w-[120px] h-[40px] relative">
-              <Image src="/images/colnect-logo.png" alt="Colnect Logo" fill className="object-contain" />
+          <DialogTitle className="text-2xl font-bold text-center">{getUserTypeTitle()}</DialogTitle>
+          <p className="text-gray-600 text-center">{getUserTypeDescription()}</p>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Full Name</Label>
+            <div className="relative">
+              <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your full name"
+                className="pl-10"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+              />
             </div>
           </div>
-          <DialogTitle className="text-center">Join Colnect Today</DialogTitle>
-          <DialogDescription className="text-center">
-            Create your free account to start swapping collectibles.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 py-4">
+
           <div className="space-y-2">
-            <Label htmlFor="signup-name">Name</Label>
-            <Input
-              id="signup-name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              required
-            />
+            <Label htmlFor="email">Email Address</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                className="pl-10"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+              />
+            </div>
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="signup-email">Email</Label>
-            <Input
-              id="signup-email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your.email@example.com"
-              required
-            />
+            <Label htmlFor="password">Password</Label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Input
+                id="password"
+                type="password"
+                placeholder="Create a password"
+                className="pl-10"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+              />
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="signup-password">Password</Label>
-            <Input
-              id="signup-password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Create a password"
-              required
-            />
+
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="terms"
+                checked={formData.agreeToTerms}
+                onCheckedChange={(checked) => setFormData({ ...formData, agreeToTerms: checked as boolean })}
+                required
+              />
+              <Label htmlFor="terms" className="text-sm">
+                I agree to the{" "}
+                <a
+                  href="https://colnect.com/en/terms"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                  rel="noreferrer"
+                >
+                  Terms of Service
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://colnect.com/en/privacy"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                  rel="noreferrer"
+                >
+                  Privacy Policy
+                </a>
+              </Label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="newsletter"
+                checked={formData.subscribeNewsletter}
+                onCheckedChange={(checked) => setFormData({ ...formData, subscribeNewsletter: checked as boolean })}
+              />
+              <Label htmlFor="newsletter" className="text-sm">
+                Subscribe to our newsletter for collecting tips and updates
+              </Label>
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="language">Preferred Language</Label>
-            <select
-              id="language"
-              name="language"
-              value={formData.language}
-              onChange={handleChange}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-purple-200 focus:border-purple-500"
-            >
-              <option value="en">English</option>
-              <option value="id">Bahasa Indonesia</option>
-              <option value="es">Español</option>
-              <option value="de">Deutsch</option>
-              <option value="fr">Français</option>
-              <option value="it">Italiano</option>
-              <option value="pt">Português</option>
-              <option value="ru">Русский</option>
-              <option value="zh">中文</option>
-              <option value="ja">日本語</option>
-              <option value="ar">العربية</option>
-              <option value="nl">Nederlands</option>
-              <option value="pl">Polski</option>
-              <option value="tr">Türkçe</option>
-              <option value="ko">한국어</option>
-            </select>
-          </div>
-          <div className="flex items-start space-x-2 pt-2">
-            <Checkbox
-              id="signup-consent"
-              checked={formData.consent}
-              onCheckedChange={handleCheckboxChange}
-              className="data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
-            />
-            <Label
-              htmlFor="signup-consent"
-              className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              I agree to receive tips & collector updates from Colnect.
-            </Label>
-          </div>
-          <DialogFooter className="pt-4">
-            <Button type="submit" className="w-full bg-purple-500 hover:bg-purple-600 text-white">
-              Create Account
-            </Button>
-          </DialogFooter>
+
+          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" size="lg">
+            Create Account & Start Collecting
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </form>
-        <div className="text-center text-sm text-gray-500 pt-2">
+
+        <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="#" className="text-purple-600 hover:underline">
-            Sign in
+          <a
+            href="https://colnect.com/en/login"
+            target="_blank"
+            className="text-blue-600 hover:underline font-medium"
+            rel="noreferrer"
+          >
+            Sign in here
           </a>
         </div>
       </DialogContent>
