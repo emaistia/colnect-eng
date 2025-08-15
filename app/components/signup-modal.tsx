@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -11,55 +12,58 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { useToast } from "@/components/ui/use-toast"
-import { subscribeToMailchimp } from "@/app/actions/mailchimp"
-import { useTranslation } from "@/lib/use-language"
 
 interface SignupModalProps {
   children: React.ReactNode
+  campaign?: string
+  source?: string
+  medium?: string
 }
 
-export function SignupModal({ children }: SignupModalProps) {
+export function SignupModal({ children, campaign = "signup", source = "website", medium = "modal" }: SignupModalProps) {
+  const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [agreedToTerms, setAgreedToTerms] = useState(false)
   const { toast } = useToast()
-  const { t } = useTranslation()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email || !name || !agreedToTerms) return
-
     setIsLoading(true)
-    try {
-      const result = await subscribeToMailchimp(email)
 
-      if (result.success) {
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          campaign,
+          source,
+          medium,
+        }),
+      })
+
+      if (response.ok) {
         toast({
-          title: t("subscribeSuccess"),
-          description: "Welcome to Colnect! We'll send you updates about new features and collecting tips.",
+          title: "Welcome to Colnect!",
+          description: "Check your email to complete your registration.",
         })
+        setOpen(false)
         setEmail("")
         setName("")
-        setAgreedToTerms(false)
-        setOpen(false)
       } else {
-        toast({
-          title: t("subscribeError"),
-          description: result.error || "Please try again later.",
-          variant: "destructive",
-        })
+        throw new Error("Failed to sign up")
       }
     } catch (error) {
       toast({
-        title: t("subscribeError"),
-        description: "Please try again later.",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       })
     } finally {
@@ -72,49 +76,39 @@ export function SignupModal({ children }: SignupModalProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Join Colnect Today</DialogTitle>
-          <DialogDescription>Start your collecting journey with millions of collectors worldwide.</DialogDescription>
+          <DialogTitle>Join Colnect</DialogTitle>
+          <DialogDescription>Start your collecting journey today. It's free to get started!</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="signup-name">{t("name")}</Label>
+            <Label htmlFor="name">Name</Label>
             <Input
-              id="signup-name"
+              id="name"
               type="text"
-              placeholder="Enter your name"
+              placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              disabled={isLoading}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="signup-email">{t("email")}</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              id="signup-email"
+              id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              disabled={isLoading}
             />
           </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="terms"
-              checked={agreedToTerms}
-              onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-              disabled={isLoading}
-            />
-            <Label htmlFor="terms" className="text-sm">
-              I agree to the Terms of Service and Privacy Policy
-            </Label>
-          </div>
-          <Button type="submit" className="w-full" disabled={isLoading || !email || !name || !agreedToTerms}>
-            {isLoading ? t("loading") : t("getStarted")}
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Creating Account..." : "Get Started"}
           </Button>
         </form>
+        <p className="text-xs text-gray-500 text-center">
+          By signing up, you agree to our Terms of Service and Privacy Policy.
+        </p>
       </DialogContent>
     </Dialog>
   )
