@@ -1,13 +1,14 @@
 "use client"
 
-import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
+import { translations, type TranslationKey } from "./translations"
 
-type Language = "en" | "id" | "es" | "fr" | "de" | "pt" | "ru" | "zh" | "ja" | "ar"
+type Language = "en" | "id"
 
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
+  t: (key: TranslationKey) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -16,27 +17,25 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("en")
 
   useEffect(() => {
-    // Get language from localStorage or browser preference
-    const savedLanguage = localStorage.getItem("colnect-language") as Language
-    if (savedLanguage) {
+    const savedLanguage = localStorage.getItem("language") as Language
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "id")) {
       setLanguage(savedLanguage)
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.split("-")[0] as Language
-      const supportedLanguages: Language[] = ["en", "id", "es", "fr", "de", "pt", "ru", "zh", "ja", "ar"]
-      if (supportedLanguages.includes(browserLang)) {
-        setLanguage(browserLang)
-      }
     }
   }, [])
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)
-    localStorage.setItem("colnect-language", lang)
+    localStorage.setItem("language", lang)
+  }
+
+  const t = (key: TranslationKey): string => {
+    return translations[language][key] || translations.en[key] || key
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage }}>{children}</LanguageContext.Provider>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
   )
 }
 

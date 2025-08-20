@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -14,6 +12,8 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+import { submitToMailchimp } from "../actions/mailchimp"
 import { useToast } from "@/components/ui/use-toast"
 
 interface SignupModalProps {
@@ -26,89 +26,126 @@ interface SignupModalProps {
 export function SignupModal({ children, campaign = "signup", source = "website", medium = "modal" }: SignupModalProps) {
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [agreeToTerms, setAgreeToTerms] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    
+    if (!agreeToTerms) {
+      toast({
+        title: "Terms Required",
+        description: "Please agree to the terms and conditions to continue.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          name,
-          campaign,
-          source,
-          medium,
-        }),
+      const result = await submitToMailchimp({
+        email,
+        firstName,
+        lastName,
+        tags: [campaign, source, medium],
       })
 
-      if (response.ok) {
+      if (result.success) {
         toast({
           title: "Welcome to Colnect!",
-          description: "Check your email to complete your registration.",
+          description: "Thank you for joining our collector community. Check your email for next steps.",
         })
         setOpen(false)
         setEmail("")
-        setName("")
+        setFirstName("")
+        setLastName("")
+        setAgreeToTerms(false)
       } else {
-        throw new Error("Failed to sign up")
+        toast({
+          title: "Signup Failed",
+          description: result.error || "Something went wrong. Please try again.",
+          variant: "destructive",
+        })
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "Failed to sign up. Please try again later.",
         variant: "destructive",
       })
     } finally {
-      setIsLoading(false)
+      setIsSubmitting(false)
     }
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Join Colnect</DialogTitle>
-          <DialogDescription>Start your collecting journey today. It's free to get started!</DialogDescription>
+          <DialogDescription>
+            Start your collecting journey with 400,000+ collectors worldwide. It's free to get started!
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="firstName">First Name</Label>
+              <Input
+                id="firstName"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="lastName">Last Name</Label>
+              <Input
+                id="lastName"
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
-              placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Creating Account..." : "Get Started"}
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              checked={agreeToTerms}
+              onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
+            />
+            <Label htmlFor="terms" className="text-sm">
+              I agree to the{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Privacy Policy
+              </a>
+            </Label>
+          </div>
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Creating Account..." : "Start Collecting"}
           </Button>
         </form>
-        <p className="text-xs text-gray-500 text-center">
-          By signing up, you agree to our Terms of Service and Privacy Policy.
-        </p>
       </DialogContent>
     </Dialog>
   )

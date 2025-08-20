@@ -8,15 +8,16 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Colnect - The Ultimate Collecting Platform",
+  title: "Colnect | Online Collectibles Catalog & Global Collector Community",
   description:
-    "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
-  keywords: "collecting, collectibles, catalog, trade, stamps, coins, banknotes, postcards",
+    "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
+  keywords:
+    "online collectibles catalog, coin collecting community, manage stamp collection, collectibles marketplace, collector's app, swap rare items online",
   authors: [{ name: "Colnect" }],
   openGraph: {
-    title: "Colnect - The Ultimate Collecting Platform",
+    title: "Colnect | Online Collectibles Catalog & Global Collector Community",
     description:
-      "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
+      "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
     url: "https://colnect.com",
     siteName: "Colnect",
     images: [
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
         url: "/images/colnect-full-logo.png",
         width: 1200,
         height: 630,
-        alt: "Colnect Logo",
+        alt: "Colnect - Global Collector Community",
       },
     ],
     locale: "en_US",
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Colnect - The Ultimate Collecting Platform",
+    title: "Colnect | Online Collectibles Catalog & Global Collector Community",
     description:
-      "Join millions of collectors worldwide. Catalog, trade, and discover collectibles with Colnect's comprehensive platform.",
+      "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
     images: ["/images/colnect-full-logo.png"],
   },
   robots: {

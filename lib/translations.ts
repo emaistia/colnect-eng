@@ -9,29 +9,27 @@ export const translations = {
     getStarted: "Get Started",
 
     // Hero Section
-    heroTitle: "The Ultimate Platform for Collectors Worldwide",
+    heroTitle: "The Smartest Way to Collect and Swap Collectibles Online",
     heroSubtitle:
-      "Join millions of collectors in cataloging, trading, and discovering rare collectibles. From stamps to coins, banknotes to postcards - your collection starts here.",
-    startCollecting: "Start Collecting",
+      "Track, catalog, and exchange rare items from 40+ collectible categories including stamps, coins, banknotes, phonecards, trading cards and more.",
+    startCollecting: "Start Your Collection",
     learnMore: "Learn More",
 
     // Trust Indicators
-    trustedBy: "Trusted by over 2 million collectors worldwide",
+    trustedBy: "Join 400,000+ collectors in 250+ countries",
 
     // Features
-    featuresTitle: "Everything You Need to Build Your Collection",
-    featuresSubtitle: "Comprehensive tools and features designed specifically for collectors",
+    featuresTitle: "Why Collectors Love Colnect",
+    featuresSubtitle: "Discover the tools and features that make collecting easier and more enjoyable",
 
-    catalogTitle: "Comprehensive Catalog",
-    catalogDescription:
-      "Access millions of items across 600+ categories with detailed information and high-quality images.",
+    catalogTitle: "Auto-Matching for Easy Swapping",
+    catalogDescription: "Find swap partners instantly based on your wishlist and duplicates.",
 
-    tradingTitle: "Safe Trading",
-    tradingDescription:
-      "Trade with collectors worldwide using our secure platform with built-in protection and verification.",
+    tradingTitle: "Safe and Secure Trading",
+    tradingDescription: "Verified user system with global reputation tracking for worry-free exchanges.",
 
-    communityTitle: "Global Community",
-    communityDescription: "Connect with fellow collectors, share knowledge, and discover new collecting opportunities.",
+    communityTitle: "Massive Catalog",
+    communityDescription: "20+ million items in a collector-curated database updated daily.",
 
     // Mobile Apps
     mobileTitle: "Take Your Collection Anywhere",
@@ -58,7 +56,8 @@ export const translations = {
     contactSubtitle: "Have questions? We're here to help.",
 
     // Footer
-    footerDescription: "The world's largest collecting community with millions of collectors and items.",
+    footerDescription:
+      "The world's largest platform for collectors, connecting 400,000+ enthusiasts across 250+ countries.",
 
     // Common
     month: "/month",
@@ -78,28 +77,28 @@ export const translations = {
     getStarted: "Mulai",
 
     // Hero Section
-    heroTitle: "Platform Terbaik untuk Kolektor di Seluruh Dunia",
+    heroTitle: "Cara Terpintar untuk Mengoleksi dan Menukar Koleksi Secara Online",
     heroSubtitle:
-      "Bergabunglah dengan jutaan kolektor dalam mengkatalog, memperdagangkan, dan menemukan koleksi langka. Dari perangko hingga koin, uang kertas hingga kartu pos - koleksi Anda dimulai di sini.",
-    startCollecting: "Mulai Mengoleksi",
+      "Lacak, katalog, dan tukarkan item langka dari 40+ kategori koleksi termasuk perangko, koin, uang kertas, kartu telepon, kartu perdagangan, dan banyak lagi.",
+    startCollecting: "Mulai Koleksi Anda",
     learnMore: "Pelajari Lebih Lanjut",
 
     // Trust Indicators
-    trustedBy: "Dipercaya oleh lebih dari 2 juta kolektor di seluruh dunia",
+    trustedBy: "Bergabunglah dengan 400.000+ kolektor di 250+ negara",
 
     // Features
-    featuresTitle: "Semua yang Anda Butuhkan untuk Membangun Koleksi",
-    featuresSubtitle: "Alat dan fitur komprehensif yang dirancang khusus untuk kolektor",
+    featuresTitle: "Mengapa Kolektor Menyukai Colnect",
+    featuresSubtitle: "Temukan alat dan fitur yang membuat mengoleksi lebih mudah dan menyenangkan",
 
-    catalogTitle: "Katalog Komprehensif",
-    catalogDescription: "Akses jutaan item di 600+ kategori dengan informasi detail dan gambar berkualitas tinggi.",
+    catalogTitle: "Pencocokan Otomatis untuk Pertukaran Mudah",
+    catalogDescription: "Temukan mitra tukar secara instan berdasarkan wishlist dan duplikat Anda.",
 
-    tradingTitle: "Perdagangan Aman",
+    tradingTitle: "Perdagangan Aman dan Terjamin",
     tradingDescription:
-      "Berdagang dengan kolektor di seluruh dunia menggunakan platform aman kami dengan perlindungan dan verifikasi bawaan.",
+      "Sistem pengguna terverifikasi dengan pelacakan reputasi global untuk pertukaran tanpa khawatir.",
 
-    communityTitle: "Komunitas Global",
-    communityDescription: "Terhubung dengan sesama kolektor, berbagi pengetahuan, dan temukan peluang mengoleksi baru.",
+    communityTitle: "Katalog Besar",
+    communityDescription: "20+ juta item dalam database yang dikurasi kolektor dan diperbarui setiap hari.",
 
     // Mobile Apps
     mobileTitle: "Bawa Koleksi Anda ke Mana Saja",
@@ -126,7 +125,7 @@ export const translations = {
     contactSubtitle: "Ada pertanyaan? Kami siap membantu.",
 
     // Footer
-    footerDescription: "Komunitas mengoleksi terbesar di dunia dengan jutaan kolektor dan item.",
+    footerDescription: "Platform terbesar di dunia untuk kolektor, menghubungkan 400.000+ penggemar di 250+ negara.",
 
     // Common
     month: "/bulan",

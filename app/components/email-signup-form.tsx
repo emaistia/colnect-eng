@@ -1,65 +1,76 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { submitToMailchimp } from "../actions/mailchimp"
 import { useToast } from "@/components/ui/use-toast"
-import { subscribeToMailchimp } from "@/app/actions/mailchimp"
-import { useTranslation } from "@/lib/use-language"
 
-export function EmailSignupForm() {
+interface EmailSignupFormProps {
+  campaign?: string
+  source?: string
+  medium?: string
+  placeholder?: string
+  buttonText?: string
+}
+
+export function EmailSignupForm({
+  campaign = "newsletter",
+  source = "website",
+  medium = "form",
+  placeholder = "Enter your email",
+  buttonText = "Subscribe",
+}: EmailSignupFormProps) {
   const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
-  const { t } = useTranslation()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) return
+    setIsSubmitting(true)
 
-    setIsLoading(true)
     try {
-      const result = await subscribeToMailchimp(email)
+      const result = await submitToMailchimp({
+        email,
+        tags: [campaign, source, medium],
+      })
 
       if (result.success) {
         toast({
-          title: t("subscribeSuccess"),
-          description: "We'll keep you updated with the latest news and features.",
+          title: "Subscribed!",
+          description: "Thank you for subscribing to our newsletter.",
         })
         setEmail("")
       } else {
         toast({
-          title: t("subscribeError"),
-          description: result.error || "Please try again later.",
+          title: "Subscription Failed",
+          description: result.error || "Something went wrong. Please try again.",
           variant: "destructive",
         })
       }
     } catch (error) {
       toast({
-        title: t("subscribeError"),
-        description: "Please try again later.",
+        title: "Error",
+        description: "Failed to subscribe. Please try again later.",
         variant: "destructive",
       })
     } finally {
-      setIsLoading(false)
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+    <form onSubmit={handleSubmit} className="flex gap-2 max-w-sm">
       <Input
         type="email"
-        placeholder={t("email")}
+        placeholder={placeholder}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
         className="flex-1"
-        disabled={isLoading}
       />
-      <Button type="submit" disabled={isLoading || !email}>
-        {isLoading ? t("loading") : t("signUp")}
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "..." : buttonText}
       </Button>
     </form>
   )

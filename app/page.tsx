@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Search,
-  Users,
   Shield,
   Star,
   Menu,
@@ -16,6 +14,10 @@ import {
   Globe,
   MessageSquare,
   Heart,
+  Zap,
+  Smartphone,
+  Database,
+  Layers,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -28,7 +30,7 @@ import { LanguageSelector } from "./components/language-selector"
 import { useLanguage } from "@/lib/use-language"
 
 export default function LandingPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -40,29 +42,40 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // SEO optimized features
   const features = [
     {
-      icon: Search,
-      title: t("catalogTitle"),
-      description: t("catalogDescription"),
+      icon: Zap,
+      title: "Auto-Matching for Easy Swapping",
+      description: "Find swap partners instantly based on your wishlist and duplicates.",
     },
     {
       icon: Shield,
-      title: t("tradingTitle"),
-      description: t("tradingDescription"),
+      title: "Safe and Secure Trading",
+      description: "Verified user system with global reputation tracking for worry-free exchanges.",
     },
     {
-      icon: Users,
-      title: t("communityTitle"),
-      description: t("communityDescription"),
+      icon: Database,
+      title: "Massive Catalog",
+      description: "20+ million items in a collector-curated database updated daily.",
+    },
+    {
+      icon: Layers,
+      title: "Multi-Category Support",
+      description: "Stamps, coins, phonecards, banknotes, tea bags, and many more.",
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile App",
+      description: "Access your full inventory and wishlist anytime, anywhere.",
     },
   ]
 
   const stats = [
-    { number: "2M+", label: "Active Collectors" },
-    { number: "50M+", label: "Cataloged Items" },
-    { number: "600+", label: "Categories" },
-    { number: "195", label: "Countries" },
+    { number: "400K+", label: "Active Collectors" },
+    { number: "20M+", label: "Cataloged Items" },
+    { number: "40+", label: "Categories" },
+    { number: "250+", label: "Countries" },
   ]
 
   const collectingCategories = [
@@ -72,6 +85,31 @@ export default function LandingPage() {
     { name: "Postcards", count: "6M+", color: "bg-blue-100 text-blue-800" },
     { name: "Phone Cards", count: "4M+", color: "bg-purple-100 text-purple-800" },
     { name: "Trading Cards", count: "3M+", color: "bg-pink-100 text-pink-800" },
+  ]
+
+  // How it works steps
+  const howItWorks = [
+    {
+      title: "Start Your Free Account",
+      description: "Sign up in seconds and gain access to tools made for collectors. No credit card required.",
+    },
+    {
+      title: "Upload and Track Your Collection",
+      description:
+        "Use our personalized dashboard to organize items, track condition, manage duplicates, and set your wishlist.",
+    },
+    {
+      title: "Connect and Swap Globally",
+      description:
+        "Use Colnect's smart system to find users looking for what you offer — swap directly, safely, and fast.",
+    },
+  ]
+
+  // Testimonials
+  const testimonials = [
+    { quote: "Colnect makes managing my collection so simple!", author: "Alex", country: "USA" },
+    { quote: "Swapping collectibles has never been this smooth.", author: "Maria", country: "Spain" },
+    { quote: "The best platform for collectors, hands down.", author: "Tom", country: "UK" },
   ]
 
   return (
@@ -154,7 +192,7 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section - Updated with SEO content */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -162,14 +200,20 @@ export default function LandingPage() {
               <div className="text-center lg:text-left">
                 <Badge className="mb-6 bg-blue-100 text-blue-800 hover:bg-blue-200">
                   <Star className="w-4 h-4 mr-2" />
-                  {t("trustedBy")}
+                  {language === "id" ? t("trustedBy") : "Join 400,000+ collectors in 250+ countries"}
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">{t("heroTitle")}</h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">{t("heroSubtitle")}</p>
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  {language === "id" ? t("heroTitle") : "The Smartest Way to Collect and Swap Collectibles Online"}
+                </h1>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  {language === "id"
+                    ? t("heroSubtitle")
+                    : "Track, catalog, and exchange rare items from 40+ collectible categories including stamps, coins, banknotes, phonecards, trading cards and more."}
+                </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <SignupModal campaign="hero_primary" source="main_page" medium="hero">
                     <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                      {t("startCollecting")}
+                      {language === "id" ? t("startCollecting") : "Start Your Collection"}
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </SignupModal>
@@ -197,7 +241,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - Updated with SEO stats */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -213,17 +257,23 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Updated with SEO content */}
       <section id="features" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("featuresTitle")}</h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t("featuresSubtitle")}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {language === "id" ? t("featuresTitle") : "Why Collectors Love Colnect"}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                {language === "id"
+                  ? t("featuresSubtitle")
+                  : "Discover the tools and features that make collecting easier and more enjoyable"}
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
+              {features.slice(0, 3).map((feature, index) => (
                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
@@ -247,9 +297,7 @@ export default function LandingPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Collecting Categories</h2>
-              <p className="text-xl text-gray-600">
-                Discover millions of items across hundreds of collecting categories
-              </p>
+              <p className="text-xl text-gray-600">Discover millions of items across 40+ collecting categories</p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -269,94 +317,66 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* How It Works Section - New SEO section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Get started with Colnect in three simple steps</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {howItWorks.map((step, index) => (
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                      <span className="text-2xl font-bold text-blue-600">{index + 1}</span>
+                    </div>
+                    <CardTitle className="text-xl mb-2">{step.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">{step.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mobile Apps Section */}
       <MobileApps />
 
-      {/* Pricing Section */}
-      <section className="py-24 bg-gray-50">
+      {/* Testimonials Section - New SEO section */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("pricingTitle")}</h2>
-              <p className="text-xl text-gray-600">{t("pricingSubtitle")}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Testimonials from Our Community</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Hear what collectors around the world say about Colnect
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Free Plan */}
-              <Card className="relative">
-                <CardHeader>
-                  <CardTitle className="text-2xl">{t("freeTitle")}</CardTitle>
-                  <CardDescription>{t("freeDescription")}</CardDescription>
-                  <div className="text-4xl font-bold">{t("freePrice")}</div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Basic collection cataloging</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Community access</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Basic trading features</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Mobile app access</span>
-                    </li>
-                  </ul>
-                  <SignupModal campaign="pricing_free" source="main_page" medium="pricing">
-                    <Button className="w-full bg-transparent" variant="outline">
-                      Get Started {t("free")}
-                    </Button>
-                  </SignupModal>
-                </CardContent>
-              </Card>
-
-              {/* Premium Plan */}
-              <Card className="relative border-2 border-blue-600 shadow-lg">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-blue-600 text-white">{t("popular")}</Badge>
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-2xl">{t("premiumTitle")}</CardTitle>
-                  <CardDescription>{t("premiumDescription")}</CardDescription>
-                  <div className="text-4xl font-bold">
-                    {t("premiumPrice")}
-                    <span className="text-lg text-gray-500">{t("month")}</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Everything in Free</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Unlimited collection items</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Advanced analytics</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Priority support</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>Export capabilities</span>
-                    </li>
-                  </ul>
-                  <Link href="/premium">
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">Upgrade to Premium</Button>
-                  </Link>
-                </CardContent>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="mb-4 text-4xl text-gray-300">"</div>
+                    <p className="text-lg mb-6 italic">{testimonial.quote}</p>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                        <span className="font-bold text-blue-600">{testimonial.author.charAt(0)}</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold">{testimonial.author}</p>
+                        <p className="text-sm text-gray-500">{testimonial.country}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
@@ -376,7 +396,7 @@ export default function LandingPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Collecting Journey?</h2>
             <p className="text-xl mb-8 opacity-90">
-              Join millions of collectors worldwide and discover the joy of organized collecting.
+              Join 400,000+ collectors worldwide and discover the joy of organized collecting.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <SignupModal campaign="final_cta" source="main_page" medium="final_section">
@@ -404,7 +424,7 @@ export default function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4" />
-                <span>Join 2M+ collectors</span>
+                <span>Join 400K+ collectors</span>
               </div>
             </div>
           </div>
@@ -421,7 +441,11 @@ export default function LandingPage() {
                   <Image src="/images/colnect-logo.png" alt="Colnect" width={32} height={32} className="rounded" />
                   <span className="text-xl font-bold">Colnect</span>
                 </div>
-                <p className="text-gray-400 mb-4">{t("footerDescription")}</p>
+                <p className="text-gray-400 mb-4">
+                  {language === "id"
+                    ? t("footerDescription")
+                    : "The world's largest platform for collectors, connecting 400,000+ enthusiasts across 250+ countries."}
+                </p>
                 <div className="flex space-x-4">
                   <a href="#" className="text-gray-400 hover:text-white">
                     <MessageSquare className="h-5 w-5" />
@@ -501,7 +525,7 @@ export default function LandingPage() {
             </div>
 
             <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 Colnect. All rights reserved.</p>
+              <p>&copy; 2025 Colnect Collectors Community. All rights reserved.</p>
             </div>
           </div>
         </div>
