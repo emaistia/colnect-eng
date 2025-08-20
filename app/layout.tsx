@@ -2,8 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { LanguageProvider } from "@/lib/language-context"
 import { Toaster } from "@/components/ui/toaster"
-import { Providers } from "./providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,14 +17,25 @@ export const metadata: Metadata = {
     title: "Colnect | Online Collectibles Catalog & Global Collector Community",
     description:
       "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
-    type: "website",
     url: "https://colnect.com",
+    siteName: "Colnect",
+    images: [
+      {
+        url: "/images/colnect-full-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Colnect - Online Collectibles Platform",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Colnect | Online Collectibles Catalog & Global Collector Community",
     description:
       "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
+    images: ["/images/colnect-full-logo.png"],
   },
     generator: 'v0.app'
 }
@@ -90,10 +101,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Providers>
+        <LanguageProvider>
           {children}
           <Toaster />
-        </Providers>
+        </LanguageProvider>
       </body>
     </html>
   )

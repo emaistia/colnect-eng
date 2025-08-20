@@ -1,7 +1,12 @@
 "use client"
 
-import { useLanguage as useLanguageContext } from "./language-context"
+import { useContext } from "react"
+import { LanguageContext } from "./language-context"
 
 export function useLanguage() {
-  return useLanguageContext()
+  const context = useContext(LanguageContext)
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider")
+  }
+  return context
 }

@@ -1,13 +1,7 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Globe } from 'lucide-react'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Globe } from "lucide-react"
 import { useLanguage } from "@/lib/use-language"
 
 export function LanguageSelector() {
@@ -16,7 +10,7 @@ export function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
+        <Button variant="outline" size="sm" className="gap-2 bg-transparent">
           <Globe className="h-4 w-4" />
           {language === "en" ? "EN" : "ID"}
         </Button>
