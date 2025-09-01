@@ -179,7 +179,7 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section - Updated with SEO content */}
+      {/* Hero Section - Updated with PDF content */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -187,22 +187,22 @@ export default function LandingPage() {
               <div className="text-center lg:text-left">
                 <Badge className="mb-6 bg-blue-100 text-blue-800 hover:bg-blue-200">
                   <Star className="w-4 h-4 mr-2" />
-                  Join 400,000+ collectors in 250+ countries
+                  Join 400,000+ Collectors Worldwide
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   The Smartest Way to Collect and Swap Collectibles Online
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Track, catalog, and exchange rare items from 40+ collectible categories including stamps, coins,
-                  banknotes, phonecards, trading cards and more.
+                  Manage 2M+ items in one place — auto-match, swap, and track effortlessly. Connect with collectors from
+                  250+ countries and discover rare items from 40+ collectible categories.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                    Start Your Collection
+                    Start Your Free Collection
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <Button size="lg" variant="outline">
-                    Learn More
+                    Join 400,000+ Collectors Worldwide
                   </Button>
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function LandingPage() {
                 <div className="relative z-10">
                   <Image
                     src="/images/collection-image.jpeg"
-                    alt="Collection showcase"
+                    alt="Stamp and coin collection on display - Colnect collector platform"
                     width={600}
                     height={400}
                     className="rounded-2xl shadow-2xl"
@@ -241,7 +241,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section - Updated with SEO content */}
+      {/* Features Section - Updated with PDF headings */}
       <section id="features" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -253,19 +253,49 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {features.slice(0, 3).map((feature, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                      <feature.icon className="h-8 w-8 text-blue-600" />
-                    </div>
-                    <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <Zap className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Auto-Matching for Easy Swapping</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">Find swap partners instantly based on your wishlist and duplicates.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <Shield className="h-8 w-8 text-green-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Safe and Secure Trading</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Verified user system with global reputation tracking for worry-free exchanges.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                    <Database className="h-8 w-8 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Massive Catalog</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">20+ million items in a collector-curated database updated daily.</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -297,7 +327,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works Section - New SEO section */}
+      {/* How It Works Section - Updated with PDF headings */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -307,19 +337,55 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {howItWorks.map((step, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl font-bold text-blue-600">{index + 1}</span>
-                    </div>
-                    <CardTitle className="text-xl mb-2">{step.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">{step.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">1</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Start Your Free Account</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Sign up in seconds and gain access to tools made for collectors. No credit card required.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">2</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Upload and Track Your Collection</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Use our personalized dashboard to organize items, track condition, manage duplicates, and set your
+                    wishlist.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">3</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Connect and Swap Globally</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Use Colnect's smart system to find users looking for what you offer — swap directly, safely, and
+                    fast.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -363,7 +429,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials Section - New SEO section */}
+      {/* Testimonials Section - Updated with PDF testimonials */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -397,7 +463,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section - Updated with PDF questions */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -409,12 +475,36 @@ export default function LandingPage() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
+                  <CardTitle>How do I start swapping collectibles?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Simply create your free account, add items to your collection and wishlist, and our auto-matching
+                    system will connect you with collectors who have what you want and want what you have.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
                   <CardTitle>Is Colnect free to use?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
                     Yes, Colnect is free to join and use. You can manage your collection, connect with collectors, and
                     explore the catalog without any cost.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Can I trade coins and stamps internationally?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Absolutely! Colnect connects collectors from 250+ countries worldwide. You can safely trade coins,
+                    stamps, and other collectibles internationally with our verified user system.
                   </p>
                 </CardContent>
               </Card>
@@ -433,36 +523,12 @@ export default function LandingPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>How does the auto-matching feature work?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Our smart system automatically connects you with collectors who have what you want and want what you
-                    have. This makes swapping items easy and efficient.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
                   <CardTitle>Is Colnect available on mobile?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
                     Yes, Colnect has a dedicated mobile app available for both iOS and Android, allowing collectors to
                     manage their inventory on the go.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Can I sell items through Colnect?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Yes, Colnect offers a marketplace where verified collectors can list and sell their items to a
-                    global audience.
                   </p>
                 </CardContent>
               </Card>
@@ -486,17 +552,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
+      {/* Final CTA Section - Updated with PDF CTAs */}
       <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Collecting Journey?</h2>
             <p className="text-xl mb-8 opacity-90">
-              Join 400,000+ collectors worldwide and discover the joy of organized collecting.
+              Manage 2M+ items in one place — auto-match, swap, and track effortlessly
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                Start Collecting Now
+                Start Your Free Collection
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -504,7 +570,7 @@ export default function LandingPage() {
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
               >
-                Learn More
+                Join 400,000+ Collectors Worldwide
               </Button>
             </div>
             <div className="flex items-center justify-center gap-4 text-sm opacity-75">
