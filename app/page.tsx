@@ -266,13 +266,13 @@ export default function Home() {
                     🌟 Trusted by 400,000+ Collectors Worldwide
                   </div>
                   <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight print:text-3xl">
-                    The Smartest Way to
-                    <span className="text-blue-600 print:text-gray-800"> Collect and Swap</span>
-                      <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight print:text-3xl">
-                    Collection Online
+                    Collect Smarter,
+                    <span className="text-blue-600 print:text-gray-800"> Connect Faster</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-600 leading-relaxed print:text-lg">
-                    Manage your collection and find ideal swap partners, all from one place. Colnect offers a comprehensive catalog, automatic matching, and picture search for collectors of stamps, coins, banknotes, and more.
+                    Manage your collection and find ideal swap partners, all from one place. Colnect offers a
+                    comprehensive catalog, automatic matching, and picture search for collectors of stamps, coins,
+                    banknotes, and more.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 print:hidden">
@@ -336,7 +336,9 @@ export default function Home() {
                 <div className="text-gray-600 print:text-sm">Active Collectors</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">21.821.281+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2 print:text-2xl print:text-gray-800">
+                  21.821.281+
+                </div>
                 <div className="text-gray-600 print:text-sm">Catalog Items</div>
               </div>
               <div>
