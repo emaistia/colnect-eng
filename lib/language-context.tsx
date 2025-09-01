@@ -13,11 +13,15 @@ interface LanguageContextType {
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+interface LanguageProviderProps {
+  children: ReactNode
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>("en")
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
+    const savedLanguage = localStorage.getItem("colnect-language") as Language
     if (savedLanguage && (savedLanguage === "en" || savedLanguage === "id")) {
       setLanguage(savedLanguage)
     }
@@ -25,11 +29,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)
-    localStorage.setItem("language", lang)
+    localStorage.setItem("colnect-language", lang)
   }
 
   const t = (key: string): string => {
-    return translations[language]?.[key] || translations.en[key] || key
+    const keys = key.split(".")
+    let value: any = translations[language]
+
+    for (const k of keys) {
+      value = value?.[k]
+    }
+
+    return value || key
   }
 
   return (

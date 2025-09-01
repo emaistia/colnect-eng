@@ -1,143 +1,174 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MessageSquare, Phone } from 'lucide-react'
-import { useToast } from "@/components/ui/use-toast"
-import { useLanguage } from "@/lib/use-language"
+import { Mail, MessageSquare, Phone } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
 
 export function ContactSection() {
-  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    setIsLoading(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. We'll get back to you soon.",
-    })
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      })
 
-    setFormData({ name: "", email: "", message: "" })
-    setIsSubmitting(false)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+      setFormData({ name: "", email: "", subject: "", message: "" })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("contactTitle")}
-            </h2>
-            <p className="text-xl text-gray-600">{t("contactSubtitle")}</p>
-          </div>
+    <section className="py-20 px-4 bg-white">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Have questions about collecting or need help with your account? We're here to help!
+          </p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Send us a message</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">{t("name")}</Label>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <CardTitle>Send us a message</CardTitle>
+                <CardDescription>Fill out the form below and we'll get back to you within 24 hours.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="contact-name">Name</Label>
                       <Input
-                        id="name"
-                        name="name"
+                        id="contact-name"
                         value={formData.name}
-                        onChange={handleChange}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Your full name"
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">{t("email")}</Label>
+                    <div>
+                      <Label htmlFor="contact-email">Email</Label>
                       <Input
-                        id="email"
-                        name="email"
+                        id="contact-email"
                         type="email"
                         value={formData.email}
-                        onChange={handleChange}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="your@email.com"
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="message">{t("message")}</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? t("sending") : t("sendMessage")}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Get in touch</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Email</h4>
-                      <p className="text-gray-600">support@colnect.com</p>
-                    </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MessageSquare className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Community Forum</h4>
-                      <p className="text-gray-600">Join our active community discussions</p>
-                    </div>
+                  <div>
+                    <Label htmlFor="contact-subject">Subject</Label>
+                    <Input
+                      id="contact-subject"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="What's this about?"
+                      required
+                    />
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Support Hours</h4>
-                      <p className="text-gray-600">Monday - Friday, 9AM - 5PM EST</p>
-                    </div>
+                  <div>
+                    <Label htmlFor="contact-message">Message</Label>
+                    <Textarea
+                      id="contact-message"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell us more about your question or feedback..."
+                      rows={5}
+                      required
+                    />
+                  </div>
+
+                  <Button type="submit" disabled={isLoading} className="w-full">
+                    {isLoading ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="space-y-6">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Email Support</h3>
+                    <p className="text-sm text-gray-600">support@colnect.com</p>
                   </div>
                 </div>
-              </div>
-            </div>
+                <p className="text-sm text-gray-600">
+                  Get help with your account, technical issues, or general questions.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <MessageSquare className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Community Forum</h3>
+                    <p className="text-sm text-gray-600">Join the discussion</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600">Connect with other collectors and get tips from the community.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Help Center</h3>
+                    <p className="text-sm text-gray-600">Self-service support</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600">
+                  Browse our knowledge base for quick answers to common questions.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

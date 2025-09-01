@@ -2,40 +2,20 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { LanguageProvider } from "@/lib/language-context"
 import { Toaster } from "@/components/ui/toaster"
+import { LanguageProvider } from "@/lib/language-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Colnect | Online Collectibles Catalog & Global Collector Community",
+  title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
   description:
-    "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
-  keywords:
-    "online collectibles catalog, coin collecting community, manage stamp collection, collectibles marketplace, collector's app, swap rare items online",
+    "Track, catalog, and exchange rare items from 40+ collectible categories. Join 400,000+ collectors in 250+ countries. Auto-match, swap, and track effortlessly.",
+  keywords: "collectibles, stamps, coins, trading cards, swap, collect, catalog, collectors community",
   openGraph: {
-    title: "Colnect | Online Collectibles Catalog & Global Collector Community",
-    description:
-      "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
-    url: "https://colnect.com",
-    siteName: "Colnect",
-    images: [
-      {
-        url: "/images/colnect-full-logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Colnect - Online Collectibles Platform",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Colnect | Online Collectibles Catalog & Global Collector Community",
-    description:
-      "Join Colnect: the global platform to manage, catalog, and swap collectibles online. Explore 40+ categories and connect with collectors worldwide.",
-    images: ["/images/colnect-full-logo.png"],
+    title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
+    description: "Manage 2M+ items in one place — auto-match, swap, and track effortlessly",
+    images: ["/images/collection-image.jpeg"],
   },
     generator: 'v0.app'
 }
@@ -47,59 +27,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "Is Colnect free to use?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Yes, Colnect is free to join and use. You can manage your collection, connect with collectors, and explore the catalog without any cost.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "What types of collectibles can I manage on Colnect?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Colnect supports over 40 categories, including stamps, coins, banknotes, phonecards, tea bags, trading cards, and many more.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "How does the auto-matching feature work?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Our smart system automatically connects you with collectors who have what you want and want what you have. This makes swapping items easy and efficient.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Is Colnect available on mobile?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Yes, Colnect has a dedicated mobile app available for both iOS and Android, allowing collectors to manage their inventory on the go.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Can I sell items through Colnect?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Yes, Colnect offers a marketplace where verified collectors can list and sell their items to a global audience.",
-                  },
-                },
-              ],
-            }),
-          }}
-        />
-      </head>
       <body className={inter.className}>
         <LanguageProvider>
           {children}
