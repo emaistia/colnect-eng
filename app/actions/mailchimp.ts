@@ -2,97 +2,113 @@
 
 import { z } from "zod"
 
-const emailSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  interests: z.array(z.string()).optional(),
+// Form validation schema
+const SignupSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  consent: z.boolean().refine((val) => val === true, {
+    message: "You must agree to receive updates",
+  }),
 })
 
+type SignupFormData = z.infer<typeof SignupSchema>
+
 export async function subscribeToMailchimp(formData: FormData) {
+  // Validate form data
+  const validatedFields = SignupSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    consent: formData.get("consent") === "on",
+  })
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      message: "Please check your information and try again.",
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
+
+  const { name, email } = validatedFields.data
+
   try {
-    // Extract form data
-    const email = formData.get("email") as string
-    const firstName = formData.get("firstName") as string
-    const lastName = formData.get("lastName") as string
-    const interests = formData.getAll("interests") as string[]
+    // Get Mailchimp credentials from environment variables
+    const apiKey = process.env.MAILCHIMP_API_KEY
+    const server = process.env.MAILCHIMP_SERVER // e.g., "us1"
+    const listId = process.env.MAILCHIMP_LIST_ID
 
-    // Validate the data
-    const validatedData = emailSchema.parse({
-      email,
-      firstName,
-      lastName,
-      interests,
-    })
-
-    // Check if required environment variables are present
-    if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_SERVER || !process.env.MAILCHIMP_LIST_ID) {
-      throw new Error("Mailchimp configuration is missing")
+    if (!apiKey || !server || !listId) {
+      console.error("Mailchimp credentials not configured:", {
+        hasApiKey: !!apiKey,
+        hasServer: !!server,
+        hasListId: !!listId,
+      })
+      return {
+        success: false,
+        message: "Email service not configured. Please contact the administrator.",
+      }
     }
 
-    // Prepare the request to Mailchimp API
-    const url = `https://${process.env.MAILCHIMP_SERVER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members`
+    // Split name into first and last name
+    const nameParts = name.split(" ")
+    const firstName = nameParts[0]
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : ""
 
+    // Prepare data for Mailchimp
     const data = {
-      email_address: validatedData.email,
+      email_address: email,
       status: "subscribed",
       merge_fields: {
-        FNAME: validatedData.firstName || "",
-        LNAME: validatedData.lastName || "",
+        FNAME: firstName,
+        LNAME: lastName,
       },
-      interests:
-        validatedData.interests?.reduce(
-          (acc, interest) => {
-            acc[interest] = true
-            return acc
-          },
-          {} as Record<string, boolean>,
-        ) || {},
     }
 
-    const response = await fetch(url, {
+    console.log("Attempting to subscribe with:", {
+      server,
+      listId,
+      email,
+      hasApiKey: !!apiKey,
+    })
+
+    // Make API request to Mailchimp
+    const response = await fetch(`https://${server}.api.mailchimp.com/3.0/lists/${listId}/members`, {
       method: "POST",
       headers: {
-        Authorization: `Basic ${Buffer.from(`anystring:${process.env.MAILCHIMP_API_KEY}`).toString("base64")}`,
+        Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
 
-    if (!response.ok) {
-      const errorData = await response.json()
+    const responseData = await response.json()
+    console.log("Mailchimp response:", {
+      status: response.status,
+      statusText: response.statusText,
+      data: responseData,
+    })
 
-      // Handle specific Mailchimp errors
-      if (errorData.title === "Member Exists") {
-        return {
-          success: false,
-          error: "This email is already subscribed to our newsletter.",
-        }
+    // Handle already subscribed users
+    if (response.status === 400 && responseData.title === "Member Exists") {
+      return {
+        success: true,
+        message: "You're already subscribed! We'll keep you updated with the latest news.",
       }
-
-      throw new Error(errorData.detail || "Failed to subscribe to newsletter")
     }
 
-    const result = await response.json()
+    if (!response.ok) {
+      throw new Error(responseData.detail || "Failed to subscribe")
+    }
 
     return {
       success: true,
-      message: "Successfully subscribed to newsletter!",
-      data: result,
+      message: "Thanks for subscribing! Check your email for a confirmation.",
     }
   } catch (error) {
     console.error("Mailchimp subscription error:", error)
-
-    if (error instanceof z.ZodError) {
-      return {
-        success: false,
-        error: error.errors[0].message,
-      }
-    }
-
     return {
       success: false,
-      error: error instanceof Error ? error.message : "An unexpected error occurred",
+      message: "There was a problem subscribing you. Please try again later.",
     }
   }
 }

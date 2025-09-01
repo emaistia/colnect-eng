@@ -1,51 +1,45 @@
 "use client"
 
-import { createContext, useState, useEffect, type ReactNode } from "react"
-import { translations } from "./translations"
+import type React from "react"
+import { createContext, useContext, useState, useEffect } from "react"
+import { translations, type Language, type TranslationKey } from "./translations"
 
-type Language = "en" | "id"
-
-interface LanguageContextType {
+type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: TranslationKey) => string
 }
 
-export const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-interface LanguageProviderProps {
-  children: ReactNode
-}
-
-export function LanguageProvider({ children }: LanguageProviderProps) {
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("en")
 
+  // Load language preference from localStorage on client side
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("colnect-language") as Language
+    const savedLanguage = localStorage.getItem("language") as Language
     if (savedLanguage && (savedLanguage === "en" || savedLanguage === "id")) {
       setLanguage(savedLanguage)
     }
   }, [])
 
-  const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang)
-    localStorage.setItem("colnect-language", lang)
+  // Save language preference to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem("language", language)
+  }, [language])
+
+  // Translation function
+  const t = (key: TranslationKey): string => {
+    return translations[language][key] || translations.en[key] || key
   }
 
-  const t = (key: string): string => {
-    const keys = key.split(".")
-    let value: any = translations[language]
+  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
+}
 
-    for (const k of keys) {
-      value = value?.[k]
-    }
-
-    return value || key
+export function useLanguage() {
+  const context = useContext(LanguageContext)
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider")
   }
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  )
+  return context
 }

@@ -3,20 +3,43 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
-import { LanguageProvider } from "@/lib/language-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
+  title: "Colnect: The Community for Stamp, Coin & Banknote Collectors",
   description:
-    "Manage 2M+ items in one place — auto-match, swap, and track effortlessly. Connect with collectors from 250+ countries and discover rare items from 40+ collectible categories.",
-  keywords:
-    "collectibles, stamps, coins, trading cards, swap, collect, catalog, collectors community, auto-matching, secure trading",
+    "Join Colnect, the largest online community for collectors. Easily manage your collection, find rare items, and swap stamps, coins, and banknotes with collectors worldwide. Start for free!",
+  keywords: "collectors, stamps, coins, banknotes, collectibles, swap, trading, collection management, community",
+  authors: [{ name: "Colnect" }],
   openGraph: {
-    title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
-    description: "Manage 2M+ items in one place — auto-match, swap, and track effortlessly",
-    images: ["/images/collection-image.jpeg"],
+    title: "Colnect: The Community for Stamp, Coin & Banknote Collectors",
+    description:
+      "Join Colnect, the largest online community for collectors. Easily manage your collection, find rare items, and swap stamps, coins, and banknotes with collectors worldwide. Start for free!",
+    url: "https://colnect.vercel.app",
+    siteName: "Colnect",
+    images: [
+      {
+        url: "/images/collection-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Colnect - The Community for Collectors",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Colnect: The Community for Stamp, Coin & Banknote Collectors",
+    description:
+      "Join Colnect, the largest online community for collectors. Easily manage your collection, find rare items, and swap stamps, coins, and banknotes with collectors worldwide. Start for free!",
+    images: ["/images/collection-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-icon.png",
   },
     generator: 'v0.app'
 }
@@ -29,10 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <LanguageProvider>
-          {children}
-          <Toaster />
-        </LanguageProvider>
+        {children}
+        <Toaster />
       </body>
     </html>
   )

@@ -1,113 +1,181 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Smartphone, Star, Download, Zap, Shield, Globe } from "lucide-react"
+import { Apple, Smartphone } from "lucide-react"
 
-export function MobileApps() {
-  const features = [
+interface AppLink {
+  name: string
+  url: string
+  description: string
+}
+
+export default function MobileApps() {
+  const [platform, setPlatform] = useState<"android" | "ios">("android")
+
+  // Base UTM parameters
+  const baseUtm = "utm_source=landing_page&utm_medium=website&utm_campaign=colnect_promo"
+
+  const androidApps: AppLink[] = [
     {
-      icon: Zap,
-      title: "Quick Access",
-      description: "Instantly check your collection and wishlist",
+      name: "Colnect Collectors Community",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/colnect_collectors_community?${baseUtm}&utm_content=main_app`,
+      description: "The main Colnect app for all collectors",
     },
     {
-      icon: Shield,
-      title: "Secure Sync",
-      description: "Your data stays synchronized across all devices",
+      name: "World Stamps",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/world_stamps?${baseUtm}&utm_content=world_stamps`,
+      description: "Catalog and manage your stamp collection",
     },
     {
-      icon: Globe,
-      title: "Offline Mode",
-      description: "Browse your collection even without internet",
+      name: "US Stamps",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/us_stamps?${baseUtm}&utm_content=us_stamps`,
+      description: "Specialized app for US stamp collectors",
+    },
+    {
+      name: "World Coins",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/world_coins?${baseUtm}&utm_content=world_coins`,
+      description: "Catalog and manage your coin collection",
+    },
+    {
+      name: "World Banknotes",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/world_banknotes?${baseUtm}&utm_content=world_banknotes`,
+      description: "Catalog and manage your banknote collection",
+    },
+    {
+      name: "Stamp Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/stamp_identifier?${baseUtm}&utm_content=stamp_identifier`,
+      description: "Identify stamps in your collection",
+    },
+    {
+      name: "Coin Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/coin_identifier?${baseUtm}&utm_content=coin_identifier`,
+      description: "Identify coins in your collection",
+    },
+    {
+      name: "Banknote Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/banknote_identifier?${baseUtm}&utm_content=banknote_identifier`,
+      description: "Identify banknotes in your collection",
+    },
+    {
+      name: "Phonecard Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/phonecard_identifier?${baseUtm}&utm_content=phonecard_identifier`,
+      description: "Identify phonecards in your collection",
+    },
+    {
+      name: "Transport Ticket Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/android/app/transport_ticket_identifier?${baseUtm}&utm_content=transport_ticket_identifier`,
+      description: "Identify transport tickets in your collection",
+    },
+  ]
+
+  const iosApps: AppLink[] = [
+    {
+      name: "World Stamps",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/world_stamps?${baseUtm}&utm_content=world_stamps_ios`,
+      description: "Catalog and manage your stamp collection",
+    },
+    {
+      name: "US Stamps",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/us_stamps?${baseUtm}&utm_content=us_stamps_ios`,
+      description: "Specialized app for US stamp collectors",
+    },
+    {
+      name: "World Coins",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/world_coins?${baseUtm}&utm_content=world_coins_ios`,
+      description: "Catalog and manage your coin collection",
+    },
+    {
+      name: "World Banknotes",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/world_banknotes?${baseUtm}&utm_content=world_banknotes_ios`,
+      description: "Catalog and manage your banknote collection",
+    },
+    {
+      name: "Stamp Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/stamp_identifier?${baseUtm}&utm_content=stamp_identifier_ios`,
+      description: "Identify stamps in your collection",
+    },
+    {
+      name: "Coin Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/coin_identifier?${baseUtm}&utm_content=coin_identifier_ios`,
+      description: "Identify coins in your collection",
+    },
+    {
+      name: "Banknote Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/banknote_identifier?${baseUtm}&utm_content=banknote_identifier_ios`,
+      description: "Identify banknotes in your collection",
+    },
+    {
+      name: "Phonecard Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/phonecard_identifier?${baseUtm}&utm_content=phonecard_identifier_ios`,
+      description: "Identify phonecards in your collection",
+    },
+    {
+      name: "Transport Ticket Identifier",
+      url: `https://colnect.com/aff/emaistia/platform/ios/app/transport_ticket_identifier?${baseUtm}&utm_content=transport_ticket_identifier_ios`,
+      description: "Identify transport tickets in your collection",
     },
   ]
 
   return (
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">
-            📱 Available on iOS & Android
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Take Your Collection Anywhere</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Access your complete collection, manage swaps, and discover new items with our powerful mobile apps
+    <div className="w-full py-12 md:py-24 bg-purple-50">
+      <div className="container px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl text-gray-900">Mobile Apps for Collectors</h2>
+          <p className="max-w-[700px] text-gray-600 md:text-lg">
+            Take your collection on the go with our specialized mobile applications
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-4">Everything you need on mobile</h3>
-              <p className="text-gray-600 mb-6">
-                Our mobile apps bring the full power of Colnect to your smartphone. Manage your collection, connect with
-                collectors, and never miss a swap opportunity.
-              </p>
-
-              <div className="space-y-4 mb-8">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <feature.icon className="h-4 w-4 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">{feature.title}</h4>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-black text-white hover:bg-gray-800 flex items-center justify-center">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download for iOS
-                </Button>
-                <Button className="bg-green-600 text-white hover:bg-green-700 flex items-center justify-center">
-                  <Download className="mr-2 h-4 w-4" />
-                  Get it on Android
-                </Button>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <div className="flex items-center space-x-1">
-                <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="font-semibold">4.8</span>
-                <span>App Store</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="font-semibold">4.7</span>
-                <span>Google Play</span>
-              </div>
-              <div>
-                <span className="font-semibold">50K+</span>
-                <span> downloads</span>
-              </div>
-            </div>
+        <Tabs defaultValue="android" className="w-full max-w-4xl mx-auto">
+          <div className="flex justify-center mb-8">
+            <TabsList className="grid w-full max-w-md grid-cols-2">
+              <TabsTrigger value="android" onClick={() => setPlatform("android")} className="flex items-center gap-2">
+                <Smartphone className="h-4 w-4" />
+                Android
+              </TabsTrigger>
+              <TabsTrigger value="ios" onClick={() => setPlatform("ios")} className="flex items-center gap-2">
+                <Apple className="h-4 w-4" />
+                iOS
+              </TabsTrigger>
+            </TabsList>
           </div>
 
-          <div className="relative">
-            <Card className="border-0 shadow-2xl bg-gradient-to-br from-blue-50 to-purple-50">
-              <CardContent className="p-12 text-center">
-                <div className="relative">
-                  <Smartphone className="h-48 w-48 mx-auto text-blue-600 mb-6" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-100/50 to-transparent rounded-lg"></div>
-                </div>
-                <h4 className="text-xl font-semibold mb-2">Mobile App Preview</h4>
-                <p className="text-gray-600">Screenshots and app store previews coming soon</p>
-              </CardContent>
-            </Card>
+          <TabsContent value="android" className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {androidApps.map((app, index) => (
+                <Card key={index} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold mb-2">{app.name}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{app.description}</p>
+                    <a href={app.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                      <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white">Download</Button>
+                    </a>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-200 rounded-full opacity-20"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full opacity-20"></div>
-          </div>
-        </div>
+          <TabsContent value="ios" className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {iosApps.map((app, index) => (
+                <Card key={index} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold mb-2">{app.name}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{app.description}</p>
+                    <a href={app.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                      <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white">Download</Button>
+                    </a>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
-    </section>
+    </div>
   )
 }

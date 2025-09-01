@@ -1,58 +1,83 @@
 "use client"
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-const faqs = [
-  {
-    question: "Is Colnect free to use?",
-    answer: "Yes, Colnect is free to join and use. You can manage your collection, connect with collectors, and explore the catalog without any cost."
-  },
-  {
-    question: "What types of collectibles can I manage on Colnect?",
-    answer: "Colnect supports over 40 categories, including stamps, coins, banknotes, phonecards, tea bags, trading cards, and many more."
-  },
-  {
-    question: "How does the auto-matching feature work?",
-    answer: "Our smart system automatically connects you with collectors who have what you want and want what you have. This makes swapping items easy and efficient."
-  },
-  {
-    question: "Is Colnect available on mobile?",
-    answer: "Yes, Colnect has a dedicated mobile app available for both iOS and Android, allowing collectors to manage their inventory on the go."
-  },
-  {
-    question: "Can I sell items through Colnect?",
-    answer: "Yes, Colnect offers a marketplace where verified collectors can list and sell their items to a global audience."
-  },
-  {
-    question: "How do I start swapping with other collectors?",
-    answer: "Simply add items to your collection and wishlist. Our system will automatically find potential swap partners and notify you of matches."
-  },
-  {
-    question: "Is my personal information safe?",
-    answer: "Absolutely. We use industry-standard security measures to protect your data and never share your personal information without your consent."
-  },
-  {
-    question: "Can I export my collection data?",
-    answer: "Yes, premium users can export their collection data in various formats including CSV and PDF for backup or sharing purposes."
-  }
-]
-
-export function FaqAccordion() {
+export default function FAQAccordion() {
   return (
     <Accordion type="single" collapsible className="w-full">
-      {faqs.map((faq, index) => (
-        <AccordionItem key={index} value={`item-${index}`}>
-          <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-          <AccordionContent className="text-gray-600">
-            {faq.answer}
-          </AccordionContent>
-        </AccordionItem>
-      ))}
+      <AccordionItem value="item-1">
+        <AccordionTrigger className="text-left font-medium">
+          What types of collectibles can I swap on Colnect?
+        </AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          Colnect supports a wide range of collectibles including stamps, coins, banknotes, postcards, phone cards,
+          bottle caps, trading cards, and more. Our platform is constantly expanding to include new categories based on
+          collector demand.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-2">
+        <AccordionTrigger className="text-left font-medium">How does the auto-matching feature work?</AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          Our smart algorithm analyzes your collection and wishlist, then compares them with other collectors around the
+          world. When it finds someone who has items you want and wants items you have, it suggests a match. You can
+          then initiate contact and arrange a swap directly through our platform.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-3">
+        <AccordionTrigger className="text-left font-medium">Is Colnect free to use?</AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          <strong>Yes, Colnect is completely free to use!</strong> All core features are available to free users,
+          including managing your collection, finding swap partners, and communicating with other collectors. You can
+          enjoy the full collecting experience without any cost. Premium membership is entirely optional and offers
+          additional features for collectors who want to enhance their experience.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-4">
+        <AccordionTrigger className="text-left font-medium">
+          What's the difference between free and premium?
+        </AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          The free version of Colnect includes all essential features needed to manage your collection and connect with
+          other collectors. Premium membership adds convenience features like unlimited best matches, extended custom
+          lists, ad-free browsing, and more. These additional features are designed to enhance the experience for
+          serious collectors, but are not required to use and enjoy the platform.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-5">
+        <AccordionTrigger className="text-left font-medium">
+          How do I ensure safe swapping with collectors from other countries?
+        </AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          Colnect has built-in safety features including user ratings and reviews, verified user badges, and a dispute
+          resolution system. We recommend starting with smaller swaps to build trust, using tracked shipping methods,
+          and communicating clearly about the condition of items. Our community guidelines also help ensure a positive
+          experience for all collectors.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-6">
+        <AccordionTrigger className="text-left font-medium">Can I sell my collectibles on Colnect?</AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          Colnect is primarily a swapping platform, but we do allow members to offer items for sale. You can indicate in
+          your collection which items you're willing to sell and set prices. However, our main focus is on facilitating
+          swaps between collectors who share a passion for collecting.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-7">
+        <AccordionTrigger className="text-left font-medium">In which languages is Colnect available?</AccordionTrigger>
+        <AccordionContent className="text-gray-600">
+          Colnect is available in over 40 languages including English, Bahasa Indonesia, Español, Deutsch, Français,
+          Italiano, Português, Русский, 中文, 日本語, العربية, Nederlands, Polski, Türkçe, 한국어, and many more. You
+          can easily switch languages using the language selector in the top navigation bar. Our global community of
+          collectors communicates in many languages, and our built-in translation tools help facilitate communication
+          between collectors who speak different languages.
+        </AccordionContent>
+      </AccordionItem>
     </Accordion>
   )
 }
