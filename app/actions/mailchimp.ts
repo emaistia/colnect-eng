@@ -112,3 +112,5 @@ export async function subscribeToMailchimp(formData: FormData) {
     }
   }
 }
+
+export { subscribeToMailchimp as submitToMailchimp }

@@ -65,7 +65,7 @@ const faqData = [
   },
 ]
 
-export default function FAQSection() {
+function FaqSection() {
   return (
     <section id="faq" className="w-full py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -96,3 +96,6 @@ export default function FAQSection() {
     </section>
   )
 }
+
+export default FaqSection
+export { FaqSection }

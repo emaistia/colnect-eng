@@ -33,7 +33,7 @@ interface LanguageSelectorProps {
   className?: string
 }
 
-export default function LanguageSelector({ className }: LanguageSelectorProps) {
+function LanguageSelector({ className }: LanguageSelectorProps) {
   const { language, setLanguage } = useLanguage()
 
   const currentLanguageObj = languages.find((lang) => lang.code === language) || languages[0]
@@ -75,3 +75,6 @@ export default function LanguageSelector({ className }: LanguageSelectorProps) {
     </DropdownMenu>
   )
 }
+
+export default LanguageSelector
+export { LanguageSelector }

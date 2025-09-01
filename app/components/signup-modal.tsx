@@ -18,7 +18,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
 
-export default function SignupModal({ children }: { children: React.ReactNode }) {
+function SignupModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -151,3 +151,6 @@ export default function SignupModal({ children }: { children: React.ReactNode })
     </Dialog>
   )
 }
+
+export default SignupModal
+export { SignupModal }

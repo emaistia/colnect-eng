@@ -26,3 +26,5 @@ export function useLanguage() {
 
   return { language, setLanguage, t }
 }
+
+export { useLanguage as useTranslation }
