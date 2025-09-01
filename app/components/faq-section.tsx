@@ -38,8 +38,8 @@ export function FAQSection() {
               Can I trade coins and stamps internationally?
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-4 text-gray-600">
-              Colnect connects collectors from 250+ countries worldwide. You can safely trade coins, stamps, and other
-              collectibles internationally with our verified user system.
+              Absolutely! Colnect connects collectors from 250+ countries worldwide. You can safely trade coins, stamps,
+              and other collectibles internationally with our verified user system.
             </AccordionContent>
           </AccordionItem>
 

@@ -4,9 +4,9 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Globe, Shield, Smartphone, Star, Zap, Target } from "lucide-react"
+import { ArrowRight, Shield, Star, Zap, Database, CheckCircle } from "lucide-react"
 import { EmailSignupForm } from "./components/email-signup-form"
 import { SignupModal } from "./components/signup-modal"
 import { FAQSection } from "./components/faq-section"
@@ -38,239 +38,235 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section - Updated with PDF content */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-6xl">
-          <div className="mb-8">
-            <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm">
-              🌟 Join 400,000+ Collectors Worldwide
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              The Smartest Way to Collect and Swap Collectibles Online
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Manage 2M+ items in one place — auto-match, swap, and track effortlessly. Connect with collectors from
-              250+ countries and discover rare items from 40+ collectible categories.
-            </p>
-          </div>
+      <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="text-center lg:text-left">
+                <Badge className="mb-6 bg-blue-100 text-blue-800 hover:bg-blue-200">
+                  <Star className="w-4 h-4 mr-2" />
+                  Join 400,000+ Collectors Worldwide
+                </Badge>
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  The Smartest Way to Collect and Swap Collectibles Online
+                </h1>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Manage 2M+ items in one place — auto-match, swap, and track effortlessly. Connect with collectors from
+                  250+ countries and discover rare items from 40+ collectible categories.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                    Start Your Free Collection
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                  <Button size="lg" variant="outline">
+                    Join 400,000+ Collectors Worldwide
+                  </Button>
+                </div>
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button
-              size="lg"
-              onClick={() => setShowSignupModal(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg"
-            >
-              Start Your Free Collection <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" asChild className="px-8 py-4 text-lg bg-transparent">
-              <Link href="https://colnect.com/en/collectors" target="_blank">
-                Join 400,000+ Collectors Worldwide
-              </Link>
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">400K+</div>
-              <div className="text-gray-600">Active Collectors</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">250+</div>
-              <div className="text-gray-600">Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">40+</div>
-              <div className="text-gray-600">Categories</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">20M+</div>
-              <div className="text-gray-600">Catalog Items</div>
+              <div className="relative">
+                <div className="relative z-10">
+                  <Image
+                    src="/images/collection-image.jpeg"
+                    alt="Stamp and coin collection on display - Colnect collector platform"
+                    width={600}
+                    height={400}
+                    className="rounded-2xl shadow-2xl"
+                  />
+                </div>
+                <div className="absolute -top-4 -right-4 w-72 h-72 bg-blue-200 rounded-full opacity-20"></div>
+                <div className="absolute -bottom-4 -left-4 w-64 h-64 bg-purple-200 rounded-full opacity-20"></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section - Updated with PDF headings */}
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Collectors Love Colnect</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover why collectors from around the world choose Colnect as their go-to platform
-            </p>
-          </div>
+      <section id="features" className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Collectors Love Colnect</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Discover the tools and features that make collecting easier and more enjoyable
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-blue-600" />
-                </div>
-                <CardTitle className="text-xl">
-                  <h3>Auto-Matching for Easy Swapping</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  Find swap partners instantly based on your wishlist and duplicates.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <Zap className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Auto-Matching for Easy Swapping</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">Find swap partners instantly based on your wishlist and duplicates.</p>
+                </CardContent>
+              </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-green-600" />
-                </div>
-                <CardTitle className="text-xl">
-                  <h3>Safe and Secure Trading</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  Verified user system with global reputation tracking for worry-free exchanges.
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <Shield className="h-8 w-8 text-green-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Safe and Secure Trading</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Verified user system with global reputation tracking for worry-free exchanges.
+                  </p>
+                </CardContent>
+              </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <Globe className="h-6 w-6 text-purple-600" />
-                </div>
-                <CardTitle className="text-xl">Massive Catalog</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  20+ million items in a collector-curated database updated daily.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                  <Target className="h-6 w-6 text-orange-600" />
-                </div>
-                <CardTitle className="text-xl">Multi-Category Support</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  Stamps, coins, phonecards, banknotes, tea bags, and many more.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                  <Smartphone className="h-6 w-6 text-pink-600" />
-                </div>
-                <CardTitle className="text-xl">Mobile App</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">
-                  Access your full inventory and wishlist anytime, anywhere.
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                    <Database className="h-8 w-8 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Massive Catalog</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">20+ million items in a collector-curated database updated daily.</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section - Updated with PDF headings */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Get started with Colnect in three simple steps</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                1
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Start Your Free Account</h3>
-              <p className="text-gray-600">
-                Sign up in seconds and gain access to tools made for collectors. No credit card required.
-              </p>
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Get started with Colnect in three simple steps</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                2
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Upload and Track Your Collection</h3>
-              <p className="text-gray-600">
-                Use our personalized dashboard to organize items, track condition, manage duplicates, and set your
-                wishlist.
-              </p>
-            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">1</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Start Your Free Account</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Sign up in seconds and gain access to tools made for collectors. No credit card required.
+                  </p>
+                </CardContent>
+              </Card>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                3
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Connect and Swap Globally</h3>
-              <p className="text-gray-600">
-                Use Colnect's smart system to find users looking for what you offer — swap directly, safely, and fast.
-              </p>
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">2</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Upload and Track Your Collection</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Use our personalized dashboard to organize items, track condition, manage duplicates, and set your
+                    wishlist.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-blue-600">3</span>
+                  </div>
+                  <CardTitle className="text-xl mb-2">
+                    <h3>Connect and Swap Globally</h3>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Use Colnect's smart system to find users looking for what you offer — swap directly, safely, and
+                    fast.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section - Updated with PDF testimonials */}
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Testimonials from Our Community</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear what our collectors have to say about their experience
-            </p>
-          </div>
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Testimonials from Our Community</h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Hear what collectors around the world say about Colnect
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-gray-700 mb-4">
-                  "Colnect makes managing my collection so simple!"
-                </blockquote>
-                <cite className="text-sm text-gray-500">— Alex, USA</cite>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="mb-4 text-4xl text-gray-300">"</div>
+                  <p className="text-lg mb-6 italic">"Colnect makes managing my collection so simple!"</p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <span className="font-bold text-blue-600">A</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Alex</p>
+                      <p className="text-sm text-gray-500">USA</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-gray-700 mb-4">
-                  "Swapping collectibles has never been this smooth."
-                </blockquote>
-                <cite className="text-sm text-gray-500">— Maria, Spain</cite>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="mb-4 text-4xl text-gray-300">"</div>
+                  <p className="text-lg mb-6 italic">"Swapping collectibles has never been this smooth."</p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <span className="font-bold text-blue-600">M</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Maria</p>
+                      <p className="text-sm text-gray-500">Spain</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-gray-700 mb-4">"The best platform for collectors, hands down."</blockquote>
-                <cite className="text-sm text-gray-500">— Tom, UK</cite>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="mb-4 text-4xl text-gray-300">"</div>
+                  <p className="text-lg mb-6 italic">"The best platform for collectors, hands down."</p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <span className="font-bold text-blue-600">T</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Tom</p>
+                      <p className="text-sm text-gray-500">UK</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -296,6 +292,45 @@ export default function LandingPage() {
               source="landing-page"
               medium="email-signup"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section - Updated with PDF CTAs */}
+      <section className="py-16 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Collecting Journey?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Manage 2M+ items in one place — auto-match, swap, and track effortlessly
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                Start Your Free Collection
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
+              >
+                Join 400,000+ Collectors Worldwide
+              </Button>
+            </div>
+            <div className="flex items-center justify-center gap-4 text-sm opacity-75">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                <span>Free to start</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                <span>Join 400K+ collectors</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -10,8 +10,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
   description:
-    "Track, catalog, and exchange rare items from 40+ collectible categories. Join 400,000+ collectors in 250+ countries. Auto-match, swap, and track effortlessly.",
-  keywords: "collectibles, stamps, coins, trading cards, swap, collect, catalog, collectors community",
+    "Manage 2M+ items in one place — auto-match, swap, and track effortlessly. Connect with collectors from 250+ countries and discover rare items from 40+ collectible categories.",
+  keywords:
+    "collectibles, stamps, coins, trading cards, swap, collect, catalog, collectors community, auto-matching, secure trading",
   openGraph: {
     title: "Colnect - The Smartest Way to Collect and Swap Collectibles Online",
     description: "Manage 2M+ items in one place — auto-match, swap, and track effortlessly",
