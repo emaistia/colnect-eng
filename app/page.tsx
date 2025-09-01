@@ -523,8 +523,8 @@ export default function Home() {
                       Build & Track Your Collection with Confidence
                     </h4>
                     <p className="text-gray-600 mb-6 print:text-sm">
-                      Whether you're collecting stamps, coins, or banknotes, start your hobby with the best tools
-                      available.
+                      Manage collectible items in one place with millions of item cataloging on Colnect. Utilize our
+                      tool for auto-match, swap, and track effortlessly.
                     </p>
 
                     <div className="mb-6">
@@ -560,7 +560,7 @@ export default function Home() {
                     className="print:hidden"
                   >
                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      Start Your Free Collection
+                      Start Manage Your Collection. Its FREE.
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
@@ -583,7 +583,8 @@ export default function Home() {
                       Reach Buyers Who Are Actively Looking for Your Items
                     </h4>
                     <p className="text-gray-600 mb-6 print:text-sm">
-                      Colnect connects you with collectors from 250+ countries via niche-friendly tools.
+                      Colnect connects you with collectors from 250+ countries via niche-friendly tools, where you can
+                      trade, sell and buy in our marketplace.
                     </p>
 
                     <div className="mb-6">
@@ -619,7 +620,7 @@ export default function Home() {
                     className="print:hidden"
                   >
                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      Manage 2M+ items in one place, auto-match, swap, and track effortlessly
+                      Start Sell/Buy
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
