@@ -80,9 +80,19 @@ export default function Home() {
         "Colnect is the world's largest online community for collectors of stamps, coins, banknotes, and other collectibles. Our platform helps you catalog your collection, find items you need, and connect with collectors worldwide for trading and selling. With over 20 million items in our database and 400,000+ active users, we make collecting easier and more enjoyable.",
     },
     {
-      question: "Is Colnect really free to use?",
+      question: "Is Colnect free to use?",
       answer:
         "Yes! Colnect is completely free to use. You can create an account, manage your collection, search our catalogs, and connect with other collectors at no cost. We also offer premium memberships with additional features for serious collectors, but all core functionality remains free forever.",
+    },
+    {
+      question: "How do I start swapping collectibles?",
+      answer:
+        "Simply create your free account, add items to your collection and wishlist, and our auto-matching system will connect you with collectors who have what you want and want what you have. You can then contact each other directly through our secure messaging system to arrange the trade.",
+    },
+    {
+      question: "Can I trade coins and stamps internationally?",
+      answer:
+        "Colnect connects collectors from 250+ countries worldwide. You can safely trade coins, stamps, and other collectibles internationally with our verified user system and global reputation tracking.",
     },
     {
       question: "How does the auto-matching feature work?",
@@ -266,8 +276,8 @@ export default function Home() {
                     🌟 Trusted by 400,000+ Collectors Worldwide
                   </div>
                   <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight print:text-3xl">
-                    Collect Smarter,
-                    <span className="text-blue-600 print:text-gray-800"> Connect Faster</span>
+                    The Smartest Way to <span className="text-blue-600 print:text-gray-800">Collect and Swap</span>{" "}
+                    Collectibles Online
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-600 leading-relaxed print:text-lg">
                     Manage your collection and find ideal swap partners, all from one place. Colnect offers a
@@ -284,6 +294,7 @@ export default function Home() {
                     <Button
                       size="lg"
                       className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 w-full sm:w-auto"
+                      aria-label="Join Colnect's global collectible exchange community"
                     >
                       Start Free
                       <ArrowRight className="ml-2 h-5 w-5" />
@@ -315,7 +326,7 @@ export default function Home() {
                   <div className="absolute -top-4 -left-4 w-full h-full bg-blue-200 rounded-lg print:hidden"></div>
                   <Image
                     src="/images/collection-image.jpeg"
-                    alt="Collection of stamps and coins showcasing the diversity of collectibles on Colnect"
+                    alt="Stamp and coin collection on display - Colnect collector platform"
                     width={500}
                     height={400}
                     className="relative rounded-lg shadow-xl object-cover"
@@ -372,7 +383,7 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 print:gap-4 print:grid-cols-2">
-              {/* Auto-Matching */}
+              {/* Auto-Matching for Easy Swapping */}
               <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-shadow print:shadow-none print:border print:border-gray-300">
                 <CardContent className="p-6 text-center print:p-4">
                   <div className="flex justify-center mb-4 print:mb-2">
@@ -380,7 +391,9 @@ export default function Home() {
                       <Puzzle className="h-8 w-8 text-blue-600 print:h-6 print:w-6 print:text-gray-800" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 print:text-lg print:mb-2">Auto-Matching</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 print:text-lg print:mb-2">
+                    Auto-Matching for Easy Swapping
+                  </h3>
                   <p className="text-gray-600 print:text-sm">
                     Instantly find swap partners for your wishlist. Our smart algorithm connects you with the perfect
                     match, finding collectors who have what you want and want what you have.
@@ -422,7 +435,7 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              {/* The Collector's Marketplace */}
+              {/* The Collector's Marketplace: Safe and Secure Trading */}
               <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-shadow print:shadow-none print:border print:border-gray-300">
                 <CardContent className="p-6 text-center print:p-4">
                   <div className="flex justify-center mb-4 print:mb-2">
@@ -431,7 +444,7 @@ export default function Home() {
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 print:text-lg print:mb-2">
-                    The Collector's Marketplace
+                    The Collector's Marketplace: Safe and Secure Trading
                   </h3>
                   <p className="text-gray-600 print:text-sm">
                     A marketplace built for collectors, by collectors. Your trusted hub to buy and sell with confidence.
@@ -458,7 +471,7 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              {/* Catalog with Your Camera */}
+              {/* Upload and Track Your Collection */}
               <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-shadow print:shadow-none print:border print:border-gray-300">
                 <CardContent className="p-6 text-center print:p-4">
                   <div className="flex justify-center mb-4 print:mb-2">
@@ -467,7 +480,7 @@ export default function Home() {
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 print:text-lg print:mb-2">
-                    Catalog with Your Camera
+                    Upload and Track Your Collection
                   </h3>
                   <p className="text-gray-600 print:text-sm">
                     Go from a physical item to a fully cataloged digital entry in seconds. Snap a photo, and our Image
@@ -484,7 +497,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12 print:mb-6">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 print:text-2xl">
-                How Do You Want to Start?
+                How Do You Want to Start on Colnect?
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-6 print:text-base">
                 Whether you're here to build your collection, make trades, or just explore, we've got the tools for you.
@@ -547,7 +560,7 @@ export default function Home() {
                     className="print:hidden"
                   >
                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      Start Here
+                      Start Your Free Collection
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
@@ -606,7 +619,7 @@ export default function Home() {
                     className="print:hidden"
                   >
                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      Start Here
+                      Manage 2M+ items in one place, auto-match, swap, and track effortlessly
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
@@ -665,7 +678,7 @@ export default function Home() {
                     className="print:hidden"
                   >
                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      Start Here
+                      Join 400,000+ Collectors Worldwide
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
@@ -700,8 +713,8 @@ export default function Home() {
                   </div>
                   <blockquote className="text-gray-700 mb-6 italic print:text-sm print:mb-3">
                     "I've been collecting stamps for 30 years, but Colnect revolutionized my hobby. The auto-matching
-                    feature helped me complete more sets in the past year than in the previous five! Managing my
-                    collection has never been easier."
+                    feature helped me complete more sets in the past year than in the previous five! Swapping
+                    collectibles has never been this smooth."
                   </blockquote>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 print:w-8 print:h-8 print:bg-gray-100">
@@ -726,7 +739,7 @@ export default function Home() {
                   <blockquote className="text-gray-700 mb-6 italic print:text-sm print:mb-3">
                     "As a coin dealer, Colnect's marketplace has been a game-changer. The global reach and dedicated
                     collector audience means my rare items find the right buyers quickly. The catalog integration makes
-                    listing so much easier."
+                    listing so much easier. Swapping, selling and buying collectibles has never been this smooth."
                   </blockquote>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 print:w-8 print:h-8 print:bg-gray-100">
@@ -751,7 +764,7 @@ export default function Home() {
                   <blockquote className="text-gray-700 mb-6 italic print:text-sm print:mb-3">
                     "I started as just curious about banknote collecting, and Colnect made it so easy to explore and
                     learn. The picture search helped me identify items I inherited, and now I'm an active collector with
-                    a growing collection!"
+                    a growing collection! Colnect makes managing my collection so simple!"
                   </blockquote>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 print:w-8 print:h-8 print:bg-gray-100">
