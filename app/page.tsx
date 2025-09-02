@@ -24,6 +24,7 @@ import { FaqSection } from "./components/faq-section"
 
 export default function LandingPage() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false)
+  const ctaUrl = "https://example.com/signup" // Assuming ctaUrl is defined somewhere
 
   return (
     <div className="min-h-screen bg-white">
@@ -392,114 +393,54 @@ export default function LandingPage() {
       {/* FAQ Section */}
       <FaqSection />
 
-      {/* Footer CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Collect Smarter and Connect Faster?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Start your collecting journey today—it's completely free, and packed with tools to grow your collection with
-            confidence.
-          </p>
+      {/* Final CTA Section */}
+      <section className="w-full py-16 bg-blue-600 text-white print:hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Collect Smarter and Connect Faster?</h2>
+            <p className="text-xl mb-8 max-w-3xl mx-auto">
+              Start your collecting journey today—it's completely free, and packed with tools to grow your collection
+              with confidence.
+            </p>
 
-          <div className="space-y-4">
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4 font-semibold"
-              onClick={() => setIsSignupModalOpen(true)}
-            >
-              Start Free – Get Your Bonus Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="mb-6">
+              <a
+                href={`${ctaUrl}&utm_content=final_cta_with_bonuses&ref=ebook_lp`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-xl px-12 py-6">
+                  Start Free – Get Your Bonus Now
+                  <ArrowRight className="ml-3 h-6 w-6" />
+                </Button>
+              </a>
+            </div>
 
-            <p className="text-blue-100 text-sm max-w-md mx-auto">
+            <p className="text-blue-100 text-lg">
               Get a Quick-start Guide & Exclusive Pro Tips Email Series for new members!
             </p>
+
+            {/* Footer content integrated into CTA section */}
+            <div className="text-center mt-8 pt-6 border-t border-blue-700">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Image
+                  src="/images/colnect-logo.png"
+                  alt="Colnect Logo"
+                  width={70}
+                  height={21}
+                  className="h-auto brightness-0 invert"
+                />
+              </div>
+              <p className="text-blue-100 text-sm mb-2 max-w-md mx-auto">
+                Comprehensive catalog, automatic matching, and personal collection feature for collectors worldwide.
+              </p>
+              <p className="text-blue-200 text-xs">
+                © {new Date().getFullYear()} Colnect Ltd. All rights reserved. Made with ❤️ for collectors worldwide.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Image src="/images/colnect-logo.png" alt="Colnect" width={32} height={32} className="rounded" />
-                <span className="text-xl font-bold">Colnect</span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                The world's largest community for collectors. Connect, trade, and grow your collection.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Platform</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Browse Collections
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Mobile Apps
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    API
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Help Center
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Community
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Privacy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Terms
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 Colnect. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
 
       {/* Signup Modal */}
       <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
