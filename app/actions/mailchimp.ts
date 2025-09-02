@@ -113,4 +113,25 @@ export async function subscribeToMailchimp(formData: FormData) {
   }
 }
 
-export { subscribeToMailchimp as submitToMailchimp }
+export async function subscribeToNewsletter(email: string) {
+  try {
+    // Simulate API call to Mailchimp
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    console.log(`Subscribing ${email} to newsletter`)
+
+    return {
+      success: true,
+      message: "Successfully subscribed to newsletter!",
+    }
+  } catch (error) {
+    console.error("Newsletter subscription error:", error)
+    return {
+      success: false,
+      message: "Failed to subscribe. Please try again.",
+    }
+  }
+}
+
+// Alias for compatibility
+export const submitToMailchimp = subscribeToNewsletter

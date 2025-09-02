@@ -1,14 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { translations, type Language } from "./translations"
 
 export function useLanguage() {
-  const [language, setLanguage] = useState<Language>("en")
+  const [language, setLanguage] = useState<string>("en")
 
   // Load language preference from localStorage on client side
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
+    const savedLanguage = localStorage.getItem("language")
     if (savedLanguage && (savedLanguage === "en" || savedLanguage === "id")) {
       setLanguage(savedLanguage)
     }
@@ -21,10 +20,25 @@ export function useLanguage() {
 
   // Translation function
   const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        "hero.title": "The Smartest Way to Collect and Swap Collectibles Online",
+        "hero.subtitle": "Join 400,000+ collectors worldwide",
+        "cta.start": "Start Free Collection",
+      },
+      es: {
+        "hero.title": "La Forma Más Inteligente de Coleccionar e Intercambiar Coleccionables en Línea",
+        "hero.subtitle": "Únete a más de 400,000 coleccionistas en todo el mundo",
+        "cta.start": "Comenzar Colección Gratuita",
+      },
+      // Add more languages as needed
+    }
+
+    return translations[language]?.[key] || key
   }
 
   return { language, setLanguage, t }
 }
 
+// Re-export useLanguage for compatibility
 export { useLanguage as useTranslation }
